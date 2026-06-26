@@ -61,7 +61,9 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
-const WHATSAPP = "https://wa.me/5562999999999";
+const WHATSAPP = "https://wa.me/5561982394985";
+const INSTAGRAM = "https://instagram.com/titan.criativos";
+const EMAIL = "contato@titancriativos.com";
 
 function Page() {
   return (
