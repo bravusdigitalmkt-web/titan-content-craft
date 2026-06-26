@@ -153,6 +153,30 @@ function Hero() {
           </a>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="mt-8 flex flex-col items-center justify-center gap-2"
+        >
+          <div className="inline-flex items-center gap-1">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 0.7 + i * 0.08, type: "spring", stiffness: 260, damping: 14 }}
+              >
+                <Star size={18} className="fill-[#FACC15] text-[#FACC15] drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
+              </motion.span>
+            ))}
+            <span className="ml-2 text-sm font-semibold text-white">5.0</span>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Avaliação média das lojas que confiam na Titan
+          </p>
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
