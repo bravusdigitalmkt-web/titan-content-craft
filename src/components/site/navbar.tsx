@@ -9,7 +9,7 @@ const links = [
   { href: "#faq", label: "FAQ" },
 ];
 
-const WHATSAPP = "https://wa.me/5562999999999";
+const WHATSAPP = "https://wa.me/5561982394985";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
