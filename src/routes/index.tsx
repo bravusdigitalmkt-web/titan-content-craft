@@ -61,7 +61,9 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
-const WHATSAPP = "https://wa.me/5562999999999";
+const WHATSAPP = "https://wa.me/5561982394985";
+const INSTAGRAM = "https://instagram.com/titan.criativos";
+const EMAIL = "contato@titancriativos.com";
 
 function Page() {
   return (
@@ -761,6 +763,11 @@ function Footer() {
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Tecnologia em conteúdo para moda.
           </p>
+          <div className="mt-4 space-y-1 text-sm text-muted-foreground">
+            <a href={`mailto:${EMAIL}`} className="block hover:text-white">{EMAIL}</a>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="block hover:text-white">WhatsApp: +55 61 98239-4985</a>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="block hover:text-white">@titan.criativos</a>
+          </div>
         </div>
 
         <nav className="flex flex-wrap items-start gap-x-8 gap-y-3 text-sm text-muted-foreground md:justify-center">
@@ -772,7 +779,7 @@ function Footer() {
 
         <div className="flex items-start gap-3 md:justify-end">
           <a
-            href="https://instagram.com"
+            href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
