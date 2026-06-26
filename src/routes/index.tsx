@@ -40,6 +40,7 @@ import {
   Target,
   CalendarRange,
   Play,
+  Star,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
