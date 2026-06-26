@@ -595,7 +595,7 @@ function Pricing() {
                     Começar agora <ArrowRight size={16} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </RevealItem>
           ))}
         </RevealGroup>
