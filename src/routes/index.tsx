@@ -774,7 +774,7 @@ function Footer() {
 
         <div className="flex items-start gap-3 md:justify-end">
           <a
-            href="https://instagram.com"
+            href={INSTAGRAM}
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
