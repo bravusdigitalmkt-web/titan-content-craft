@@ -10,6 +10,8 @@ import { Navbar } from "@/components/site/navbar";
 import { BackgroundOrbs } from "@/components/site/orbs";
 import { Reveal, RevealGroup, RevealItem } from "@/components/site/reveal";
 import { Counter } from "@/components/site/counter";
+import { ScrollProgress } from "@/components/site/scroll-progress";
+import { Marquee } from "@/components/site/marquee";
 import {
   ArrowRight,
   Sparkles,
@@ -67,8 +69,10 @@ const EMAIL = "contato@titancriativos.com";
 function Page() {
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
+      <ScrollProgress />
       <Navbar />
       <Hero />
+      <Marquee />
       <TrustBar />
       <Problem />
       <HowItWorks />
@@ -110,7 +114,7 @@ function Hero() {
           className="mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
           Transformamos fotos dos seus produtos em{" "}
-          <span className="text-gradient-brand">conteúdo que vende.</span>
+          <span className="text-gradient-brand-animated">conteúdo que vende.</span>
         </motion.h1>
 
         <motion.p
@@ -128,15 +132,18 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <a
+          <motion.a
             href={WHATSAPP}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300, damping: 18 }}
+            className="shimmer-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand"
           >
             Quero começar
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </motion.a>
           <a
             href="#como-funciona"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
@@ -533,10 +540,12 @@ function Pricing() {
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
           {plans.map((p) => (
             <RevealItem key={p.name}>
-              <div
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className={`relative h-full rounded-3xl p-px ${
                   p.featured
-                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED]"
+                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED] animate-float-y"
                     : "bg-white/[0.08]"
                 }`}
               >
@@ -586,7 +595,7 @@ function Pricing() {
                     Começar agora <ArrowRight size={16} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </RevealItem>
           ))}
         </RevealGroup>
