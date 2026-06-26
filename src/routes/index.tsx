@@ -370,22 +370,25 @@ function Benefits() {
 }
 
 /* ---------------- PORTFOLIO ---------------- */
+import fashion1 from "@/assets/fashion-1.jpg";
+import fashion2 from "@/assets/fashion-2.jpg";
+import fashion3 from "@/assets/fashion-3.jpg";
+import fashion4 from "@/assets/fashion-4.jpg";
+import fashion5 from "@/assets/fashion-5.jpg";
+import fashion6 from "@/assets/fashion-6.jpg";
+import fashion7 from "@/assets/fashion-7.jpg";
+import fashion8 from "@/assets/fashion-8.jpg";
+
 function Portfolio() {
   const items = [
-    { label: "Reels", icon: Video, h: "h-72" },
-    { label: "Carrossel", icon: LayoutGrid, h: "h-56" },
-    { label: "Stories", icon: ImageIcon, h: "h-64" },
-    { label: "Criativo", icon: Megaphone, h: "h-60" },
-    { label: "Reels", icon: Video, h: "h-56" },
-    { label: "Carrossel", icon: LayoutGrid, h: "h-72" },
-    { label: "Stories", icon: ImageIcon, h: "h-52" },
-    { label: "Criativo", icon: Megaphone, h: "h-64" },
-  ];
-  const gradients = [
-    "from-[#2563EB]/40 via-[#7C3AED]/30 to-transparent",
-    "from-[#3B82F6]/40 via-[#2563EB]/20 to-transparent",
-    "from-[#7C3AED]/40 via-[#2563EB]/20 to-transparent",
-    "from-[#22C55E]/30 via-[#3B82F6]/30 to-transparent",
+    { label: "Reels", icon: Video, src: fashion1, h: "h-80" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64" },
+    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72" },
+    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64" },
+    { label: "Reels", icon: Video, src: fashion5, h: "h-64" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80" },
+    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60" },
+    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72" },
   ];
   return (
     <section className="relative py-24 sm:py-32">
@@ -409,15 +412,17 @@ function Portfolio() {
               <div
                 className={`group relative ${it.h} overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] transition-transform duration-500 hover:-translate-y-1`}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${gradients[i % gradients.length]}`}
+                <img
+                  src={it.src}
+                  alt={`Conteúdo de moda criado pela Titan - ${it.label}`}
+                  loading="lazy"
+                  width={704}
+                  height={1216}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 [background-image:radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)]" />
-                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
                   <it.icon size={11} /> {it.label}
-                </div>
-                <div className="absolute inset-0 grid place-items-center text-white/20 transition-colors group-hover:text-white/40">
-                  <it.icon size={40} />
                 </div>
               </div>
             </RevealItem>
