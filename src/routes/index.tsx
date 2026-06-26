@@ -12,6 +12,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/site/reveal";
 import { Counter } from "@/components/site/counter";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { Marquee } from "@/components/site/marquee";
+import titanLogo from "@/assets/titan-logo.jpg.asset.json";
 import {
   ArrowRight,
   Sparkles,
@@ -740,9 +741,11 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand">
-              <span className="font-display text-sm font-bold text-white">T</span>
-            </span>
+            <img
+              src={titanLogo.url}
+              alt="Titan Criativos"
+              className="h-10 w-10 rounded-full object-cover ring-1 ring-primary/40"
+            />
             <span className="font-display text-base font-bold text-white">Titan Criativos</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
