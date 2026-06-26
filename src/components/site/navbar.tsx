@@ -41,8 +41,8 @@ export function Navbar() {
             alt="Titan Criativos"
             className="h-10 w-10 rounded-full object-cover ring-1 ring-primary/40 glow-brand"
           />
-          <span className="font-display text-base font-bold tracking-tight text-gradient-brand-animated">
-            Titan Criativos
+          <span className="font-display text-base font-bold tracking-tight text-white">
+            Titan <span className="text-gradient-brand-animated">Criativos</span>
           </span>
         </a>
 
