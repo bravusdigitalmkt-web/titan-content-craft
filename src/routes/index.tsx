@@ -22,7 +22,6 @@ import {
   PenTool,
   TrendingDown,
   Check,
-  Star,
   CalendarClock,
   Cpu,
   UserX,
@@ -157,61 +156,8 @@ function Hero() {
           <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Entrega recorrente</span>
         </motion.p>
 
-        {/* Phone mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="relative mx-auto mt-16 w-full max-w-xs"
-        >
-          <div className="absolute -inset-10 -z-10 rounded-full bg-[#2563EB]/20 blur-3xl" />
-          <PhoneMockup />
-        </motion.div>
       </div>
     </section>
-  );
-}
-
-function PhoneMockup() {
-  return (
-    <div className="relative mx-auto aspect-[9/19] w-64 rounded-[2.5rem] border border-white/10 bg-[#0c0c10] p-2 shadow-[0_30px_80px_-20px_rgba(37,99,235,0.45)]">
-      <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-black" />
-      <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-[#09090B]">
-        <div className="flex items-center justify-between px-4 pt-6 text-[10px] text-white/80">
-          <span>9:41</span>
-          <span className="font-semibold">Instagram</span>
-          <span>●●●</span>
-        </div>
-        <div className="mt-3 px-3">
-          <div className="flex items-center gap-2 pb-2">
-            <div className="h-7 w-7 rounded-full bg-gradient-brand" />
-            <div className="text-[10px] font-semibold text-white">sua_loja</div>
-          </div>
-          <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10 bg-[#111827]">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/40 via-[#7C3AED]/30 to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3">
-              <div className="text-[10px] uppercase tracking-widest text-white/70">Novo Drop</div>
-              <div className="font-display text-base font-bold leading-tight text-white">
-                Coleção
-                <br />
-                Verão 25
-              </div>
-            </div>
-            <div className="absolute right-3 top-3 rounded-full bg-white/15 px-2 py-0.5 text-[9px] font-medium text-white backdrop-blur">
-              Reels
-            </div>
-          </div>
-          <div className="mt-3 flex items-center gap-3 text-white">
-            <Star size={14} />
-            <MessageCircle size={14} />
-            <Instagram size={14} />
-          </div>
-          <div className="mt-2 text-[10px] text-white/70">
-            <span className="font-semibold text-white">+1.247</span> visualizações
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
