@@ -22,7 +22,6 @@ import {
   PenTool,
   TrendingDown,
   Check,
-  Star,
   CalendarClock,
   Cpu,
   UserX,
