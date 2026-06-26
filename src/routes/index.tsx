@@ -540,10 +540,12 @@ function Pricing() {
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
           {plans.map((p) => (
             <RevealItem key={p.name}>
-              <div
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className={`relative h-full rounded-3xl p-px ${
                   p.featured
-                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED]"
+                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED] animate-float-y"
                     : "bg-white/[0.08]"
                 }`}
               >
