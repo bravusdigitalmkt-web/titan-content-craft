@@ -121,6 +121,7 @@ function Page() {
       <HowItWorks />
       <Benefits />
       <Portfolio />
+      <VideoCatalog />
       <Services />
       <Pricing />
       <FAQ />
