@@ -121,6 +121,7 @@ function Page() {
       <HowItWorks />
       <Benefits />
       <Portfolio />
+      <VideoCatalog />
       <Services />
       <Pricing />
       <FAQ />
@@ -536,6 +537,94 @@ function Portfolio() {
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
           >
             Ver portfólio completo + depoimentos <ArrowRight size={16} />
+          </a>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- VIDEO CATALOG ---------------- */
+function VideoCatalog() {
+  // Substitua os `src` por URLs dos seus vídeos (.mp4). Os posters já estão prontos.
+  const videos = [
+    { src: "", poster: fashion1, label: "Reel · Lançamento" },
+    { src: "", poster: fashion2, label: "Reel · Coleção" },
+    { src: "", poster: fashion3, label: "Reel · Provador" },
+    { src: "", poster: fashion5, label: "Reel · Look do dia" },
+    { src: "", poster: fashion6, label: "Reel · Editorial" },
+    { src: "", poster: fashion8, label: "Reel · Anúncio" },
+  ];
+  return (
+    <section id="catalogo" className="relative py-24 sm:py-32">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-96 bg-gradient-to-b from-[#2563EB]/8 to-transparent" />
+      <div className="mx-auto max-w-6xl px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <SectionLabel>Catálogo em Vídeo</SectionLabel>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
+            Exemplos reais de <span className="text-gradient-brand">Reels criados pela Titan</span>
+          </h2>
+          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+            Toque pra reproduzir. Cada vídeo foi gerado a partir de uma foto simples do estoque.
+          </p>
+        </Reveal>
+
+        <RevealGroup className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5" stagger={0.06}>
+          {videos.map((v, i) => (
+            <RevealItem key={i}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
+              >
+                {v.src ? (
+                  <video
+                    src={v.src}
+                    poster={v.poster}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={v.poster}
+                      alt={v.label}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <motion.div
+                        whileHover={{ scale: 1.08 }}
+                        className="grid h-16 w-16 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 glow-brand"
+                      >
+                        <Play size={26} className="ml-1 fill-white" />
+                      </motion.div>
+                    </div>
+                  </>
+                )}
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
+                  <Video size={11} /> {v.label}
+                </div>
+                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between text-[11px] text-white/80">
+                  <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">9:16</span>
+                  <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">HD</span>
+                </div>
+              </motion.div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+
+        <Reveal className="mt-12 text-center">
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
+          >
+            Quero um vídeo desses pra minha loja <ArrowRight size={16} />
           </a>
         </Reveal>
       </div>
