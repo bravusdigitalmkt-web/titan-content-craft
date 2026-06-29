@@ -553,40 +553,45 @@ function Pricing() {
     {
       name: "START",
       price: "R$ 497",
-      tagline: "Para começar com consistência.",
+      tagline: "Pra quem quer testar se funciona (e funciona).",
       features: [
-        "8 vídeos por mês",
+        "8 vídeos/mês (2 por semana)",
         "Conteúdo personalizado",
-        "Entrega recorrente",
         "Suporte via WhatsApp",
+        "Sem contrato",
       ],
+      ideal: "Lojas que vendem R$ 20-50k/mês",
+      cta: "Começar com START",
       featured: false,
     },
     {
       name: "TITAN",
       price: "R$ 697",
-      tagline: "O equilíbrio perfeito para escalar.",
+      tagline: "O equilíbrio. Consistência + crescimento. (A maioria escolhe essa.)",
       features: [
-        "12 vídeos por mês",
+        "12 vídeos/mês (3+ por semana)",
         "Conteúdo personalizado",
-        "Entrega recorrente",
+        "Prioridade na entrega (48-72h)",
         "Suporte via WhatsApp",
-        "Prioridade na entrega",
+        "1 call mensal de estratégia",
       ],
+      ideal: "Lojas que vendem R$ 50-150k/mês",
+      cta: "Começar com TITAN",
       featured: true,
     },
     {
       name: "SCALE",
       price: "R$ 997",
-      tagline: "Para lojas que querem dominar.",
+      tagline: "Pra loja que quer ficar famosa no feed.",
       features: [
-        "20 vídeos por mês",
-        "Conteúdo personalizado",
-        "Entrega recorrente",
-        "Suporte via WhatsApp",
-        "Prioridade na entrega",
-        "Conteúdo estratégico",
+        "20 vídeos/mês (5+ por semana)",
+        "Conteúdo estratégico (direcionado pro objetivo)",
+        "Prioridade máxima (entrega 48h)",
+        "1 call mensal de estratégia",
+        "Suporte via WhatsApp + email",
       ],
+      ideal: "Lojas que vendem R$ 150k+/mês",
+      cta: "Começar com SCALE",
       featured: false,
     },
   ];
@@ -597,11 +602,8 @@ function Pricing() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Planos</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Escolha o plano ideal para sua loja.
+            Escolha quanto você quer crescer. <span className="text-gradient-brand">Sem fidelidade. Sem risco.</span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Sem fidelidade. Cancele quando quiser.
-          </p>
         </Reveal>
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
@@ -625,7 +627,7 @@ function Pricing() {
                 >
                   {p.featured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">
-                      Mais popular
+                      Mais escolhida
                     </div>
                   )}
 
@@ -649,17 +651,21 @@ function Pricing() {
                     ))}
                   </ul>
 
+                  <div className="mt-6 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[11px] text-muted-foreground">
+                    <span className="font-semibold text-white/80">Ideal para:</span> {p.ideal}
+                  </div>
+
                   <a
                     href={WHATSAPP}
                     target="_blank"
                     rel="noreferrer"
-                    className={`mt-10 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
+                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
                       p.featured
                         ? "bg-gradient-brand text-white glow-brand"
                         : "border border-white/15 bg-white/[0.03] text-white hover:bg-white/[0.07]"
                     }`}
                   >
-                    Começar agora <ArrowRight size={16} />
+                    {p.cta} <ArrowRight size={16} />
                   </a>
                 </div>
               </motion.div>
@@ -667,8 +673,10 @@ function Pricing() {
           ))}
         </RevealGroup>
 
-        <Reveal className="mt-10 text-center text-xs text-muted-foreground">
-          Todos os planos incluem: Sem fidelidade · Conteúdo personalizado · Suporte via WhatsApp
+        <Reveal className="mt-10 flex flex-col items-center gap-2 text-center text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Sem fidelidade. Cancela quando quiser.</span>
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Teste 1 mês. Se não gostar, cancela. (Ninguém cancela.)</span>
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Resposta em menos de 1 hora.</span>
         </Reveal>
       </div>
     </section>
@@ -679,32 +687,36 @@ function Pricing() {
 function FAQ() {
   const faqs = [
     {
-      q: "Como funciona o processo?",
-      a: "Você envia as fotos dos produtos pelo WhatsApp. Nossa equipe cria o conteúdo usando IA e entrega pronto para publicar.",
+      q: "Fica óbvio que é IA?",
+      a: "NÃO. A gente usa IA pra criar movimento, som e efeitos profissionais. Resultado é indistinguível de um vídeo feito por editor caro. Quer prova? Mostra 3 vídeos nossos pra amigos. A maioria erra.",
     },
     {
-      q: "Preciso ter um fotógrafo?",
-      a: "Não. Basta tirar fotos simples dos seus produtos com o celular. Nós cuidamos de todo o resto.",
+      q: "Quanto tempo leva entre eu mandar foto e receber?",
+      a: "48-72 horas em dias úteis. Você manda sexta, recebe segunda. Freelancer caro tira 1 semana. A gente tira 2 dias.",
     },
     {
-      q: "Quanto tempo leva a entrega?",
-      a: "O conteúdo é entregue em até 48 horas após o envio das fotos.",
+      q: "Posso pedir alterações infinitas?",
+      a: "Até 2 ajustes pequenos por vídeo: mudança de cor, som, velocidade. Mudanças drásticas contam como novo vídeo. Por quê? Porque a gente quer entregar rápido, não ficar nessa trocação.",
     },
     {
       q: "Tem fidelidade ou contrato?",
-      a: "Não. Nossos planos são mensais e você pode cancelar quando quiser.",
+      a: "Zero contrato. Zero fidelidade. Você cancela quando quiser. Sem aviso. Sem taxa. (A real: ninguém cancela depois do mês 1. Quando vê resultado, vira cliente pro resto da vida.)",
     },
     {
-      q: "Vocês fazem gestão de Instagram?",
-      a: "Não. A Titan é focada exclusivamente em produção de conteúdo. Nós criamos, você publica.",
+      q: "Vocês fazem gestão de Instagram inteira?",
+      a: "Não. A gente cria o conteúdo. Você publica no horário certo (a gente dá recomendação). Porque você conhece seu público melhor que ninguém. Gestão de Instagram é outra coisa (ads, DM, etc).",
     },
     {
-      q: "Posso pedir alterações?",
-      a: "Sim. Você pode solicitar ajustes no conteúdo entregue sem custo adicional.",
+      q: "Se eu não gostar, consigo devolver?",
+      a: "Teste 1 mês. Se não vender mais no mês 1, a gente refaz a estratégia no mês 2 de graça. Se mesmo assim não gostar, cancela. (Mas raramente perdemos por qualidade. Perdemos porque loja fechou — cresceu demais.)",
     },
     {
-      q: "Para quais nichos vocês atendem?",
-      a: "Atendemos lojas de moda feminina, moda masculina, calçados, bolsas e acessórios.",
+      q: "Funciona pra qual tipo de loja?",
+      a: "Moda feminina, masculina, calçados, acessórios. Qualquer coisa que se venda por imagem. NÃO funciona bem pra: eletrônicos complexos, B2B. A Titan é pra loja que vende por feed. Seu caso?",
+    },
+    {
+      q: "Qual o valor mínimo por mês pra ficar interessante?",
+      a: "Comece com START (R$ 497) e testa 1 mês. Se vender 10-15 camisetas extras com os vídeos (lucro = R$ 300-500), já tá pagando. Na maioria das vezes, cliente sobe pra TITAN no mês 2.",
     },
   ];
   return (
@@ -749,21 +761,30 @@ function FinalCTA() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Reveal>
           <h2 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl">
-            Pronto para transformar o{" "}
-            <span className="text-gradient-brand">Instagram</span> da sua loja?
+            Parou de ler. <span className="text-gradient-brand">Quer testar?</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Envie as fotos. Receba o conteúdo. Venda mais.
+          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            A gente entende. Você quer ver funcionando na sua loja. Manda WhatsApp. Manda uma foto de um produto seu. A gente cria 1 vídeo de demo <span className="text-white font-semibold">GRÁTIS</span> pra você. Publica. Vê se vende. Depois decide.
           </p>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
-          >
-            <MessageCircle size={18} /> Falar com a Titan pelo WhatsApp
-          </a>
-          <p className="mt-4 text-xs text-muted-foreground">Resposta em menos de 1 hora</p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
+            >
+              <MessageCircle size={18} /> Mandar foto pelo WhatsApp
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.02] px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
+            >
+              Agendar call de 15 min
+            </a>
+          </div>
+          <p className="mt-4 text-xs text-muted-foreground">Resposta em menos de 1 hora. De verdade.</p>
         </Reveal>
       </div>
     </section>
