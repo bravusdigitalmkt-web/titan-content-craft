@@ -288,15 +288,15 @@ function Problem() {
     },
   ];
   return (
-    <section className="relative py-24 sm:py-32">
+    <section id="problema" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            A realidade que <span className="text-gradient-brand">ninguém quer ouvir</span>
+            Por Que Sua Loja Não Cresce No <span className="text-gradient-brand">Instagram Como Deveria</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Você já sabe que precisa postar mais. Mas sabe por quê sua loja não cresce como deveria?
+            Instagram parado = loja invisível. Enquanto você posta 2x por semana, sua concorrente publica todo dia — e vende mais.
           </p>
         </Reveal>
 
