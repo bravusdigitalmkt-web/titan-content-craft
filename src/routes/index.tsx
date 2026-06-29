@@ -47,17 +47,58 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Titan Criativos — Conteúdo com IA para lojas de moda" },
+      { title: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
       {
         name: "description",
         content:
-          "Transforme fotos dos seus produtos em conteúdo pronto para o Instagram. Reels, criativos, stories e carrosséis com Inteligência Artificial.",
+          "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis.",
       },
-      { property: "og:title", content: "Titan Criativos — Conteúdo com IA para lojas de moda" },
+      { name: "keywords", content: "agência de vídeos para moda, reels com IA, conteúdo para loja de moda, vídeos para Instagram, marketing de moda, reels profissionais" },
+      { property: "og:title", content: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
       {
         property: "og:description",
         content:
-          "Você envia as fotos. Nós criamos o conteúdo com IA. Sua loja vende mais.",
+          "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://titan-content-craft.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
+      { name: "twitter:description", content: "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis." },
+    ],
+    links: [{ rel: "canonical", href: "https://titan-content-craft.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Titan Criativos",
+          url: "https://titan-content-craft.lovable.app/",
+          description: "Agência de vídeos para moda com IA. Reels profissionais para lojas de moda em 48h.",
+          sameAs: ["https://instagram.com/titan.criativos"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+55-61-98239-4985",
+            contactType: "sales",
+            email: "contato@titancriativos.com",
+            areaServed: "BR",
+            availableLanguage: ["Portuguese"],
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "Fica óbvio que é IA?", acceptedAnswer: { "@type": "Answer", text: "Não. Usamos IA para criar movimento, som e efeitos profissionais. O resultado é indistinguível de um vídeo feito por editor caro." } },
+            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48-72 horas em dias úteis. Você manda na sexta, recebe na segunda." } },
+            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Zero contrato. Zero fidelidade. Cancele quando quiser, sem taxa." } },
+            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios — qualquer loja que vende por imagem no Instagram." } },
+          ],
+        }),
       },
     ],
   }),
@@ -115,8 +156,8 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
-          Sua loja tá perdendo vendas porque{" "}
-          <span className="text-gradient-brand-animated">Instagram tá parado</span>
+          Agência de Vídeos para Moda com{" "}
+          <span className="text-gradient-brand-animated">Reels feitos por IA</span>
         </motion.h1>
 
         <motion.p
@@ -125,7 +166,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
         >
-          Enquanto você fica postando 2-3x por semana, sua concorrente publica todo dia. Ela vende mais. Muito mais.
+          Sua loja vende mais com Reels profissionais — 48h de entrega, sem fotógrafo.
         </motion.p>
 
         <motion.div
@@ -247,15 +288,15 @@ function Problem() {
     },
   ];
   return (
-    <section className="relative py-24 sm:py-32">
+    <section id="problema" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            A realidade que <span className="text-gradient-brand">ninguém quer ouvir</span>
+            Por Que Sua Loja Não Cresce No <span className="text-gradient-brand">Instagram Como Deveria</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Você já sabe que precisa postar mais. Mas sabe por quê sua loja não cresce como deveria?
+            Instagram parado = loja invisível. Enquanto você posta 2x por semana, sua concorrente publica todo dia — e vende mais.
           </p>
         </Reveal>
 
@@ -438,14 +479,14 @@ import fashion8 from "@/assets/fashion-8.jpg";
 
 function Portfolio() {
   const items = [
-    { label: "Reels", icon: Video, src: fashion1, h: "h-80" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64" },
-    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72" },
-    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64" },
-    { label: "Reels", icon: Video, src: fashion5, h: "h-64" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80" },
-    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60" },
-    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72" },
+    { label: "Reels", icon: Video, src: fashion1, h: "h-80", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
+    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
+    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
+    { label: "Reels", icon: Video, src: fashion5, h: "h-64", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
+    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
+    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
   ];
   return (
     <section className="relative py-24 sm:py-32">
@@ -471,7 +512,7 @@ function Portfolio() {
               >
                 <img
                   src={it.src}
-                  alt={`Conteúdo de moda criado pela Titan - ${it.label}`}
+                  alt={it.alt}
                   loading="lazy"
                   width={704}
                   height={1216}
@@ -730,7 +771,7 @@ function FAQ() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-3">
             {faqs.map((f, i) => (
               <AccordionItem
                 key={i}
