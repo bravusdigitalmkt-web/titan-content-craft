@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import titanLogo from "../assets/titan-logo.jpg.asset.json";
+import titanLogo from "../assets/titan-logo.png.asset.json";
 
 
 function NotFoundComponent() {
@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/jpeg", href: titanLogo.url },
+      { rel: "icon", type: "image/png", href: titanLogo.url },
       { rel: "apple-touch-icon", href: titanLogo.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
