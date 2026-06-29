@@ -12,7 +12,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/site/reveal";
 import { Counter } from "@/components/site/counter";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { Marquee } from "@/components/site/marquee";
-import titanLogo from "@/assets/titan-logo.png.asset.json";
+import titanLogo from "@/assets/titan-logo-visible.png.asset.json";
 import {
   ArrowRight,
   Sparkles,
@@ -842,7 +842,7 @@ function Footer() {
             <img
               src={titanLogo.url}
               alt="Logo Titan Criativos"
-              className="h-12 w-12 shrink-0 rounded-full bg-black object-contain ring-1 ring-primary/50"
+              className="h-12 w-12 shrink-0 rounded-full bg-white object-contain p-1 ring-1 ring-primary/50"
             />
             <span className="font-display text-base font-bold text-white">Titan Criativos</span>
           </div>
