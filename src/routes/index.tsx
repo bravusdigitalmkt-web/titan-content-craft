@@ -598,6 +598,78 @@ function VideoCatalog() {
   );
 }
 
+function ReelCard({ src, label }: { src: string; label: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [needsTap, setNeedsTap] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const p = el.play();
+            if (p && typeof p.catch === "function") {
+              p.catch(() => setNeedsTap(true));
+            }
+          } else {
+            el.pause();
+          }
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const handleTap = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.muted = false;
+    el.play().then(() => setNeedsTap(false)).catch(() => {});
+  };
+
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 220, damping: 18 }}
+      className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
+    >
+      <video
+        ref={ref}
+        src={src}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        // @ts-expect-error iOS-only attribute
+        disableRemotePlayback=""
+        disablePictureInPicture
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <button
+        type="button"
+        onClick={handleTap}
+        aria-label="Tocar vídeo com som"
+        className={`absolute inset-0 z-10 flex items-center justify-center bg-black/30 transition-opacity ${needsTap ? "opacity-100" : "opacity-0 hover:opacity-100"}`}
+      >
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-black shadow-xl">
+          <Play size={22} fill="currentColor" />
+        </span>
+      </button>
+      <div className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
+        <Video size={11} /> {label}
+      </div>
+      <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-center justify-between text-[11px] text-white/80">
+        <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">9:16</span>
+        <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">HD</span>
+      </div>
+    </motion.div>
+  );
+}
+
 /* ---------------- SERVICES ---------------- */
 function Services() {
   const services = [
