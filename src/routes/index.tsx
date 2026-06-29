@@ -477,6 +477,12 @@ import fashion5 from "@/assets/fashion-5.jpg";
 import fashion6 from "@/assets/fashion-6.jpg";
 import fashion7 from "@/assets/fashion-7.jpg";
 import fashion8 from "@/assets/fashion-8.jpg";
+import reel1 from "@/assets/reel-1.mp4.asset.json";
+import reel2 from "@/assets/reel-2.mp4.asset.json";
+import reel3 from "@/assets/reel-3.mp4.asset.json";
+import reel4 from "@/assets/reel-4.mp4.asset.json";
+import reel5 from "@/assets/reel-5.mp4.asset.json";
+import reel6 from "@/assets/reel-6.mp4.asset.json";
 
 function Portfolio() {
   const items = [
