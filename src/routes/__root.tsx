@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import titanLogo from "../assets/titan-logo-visible.png.asset.json";
+import titanLogo from "../assets/titan-logo-new.png.asset.json";
 
 
 function NotFoundComponent() {
