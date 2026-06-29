@@ -289,18 +289,21 @@ function HowItWorks() {
   const steps = [
     {
       icon: Upload,
-      title: "Envie as fotos",
-      desc: "Tire fotos dos seus produtos e envie pelo WhatsApp.",
+      title: "Manda a foto pelo WhatsApp",
+      desc: "Qualquer foto. Sua câmera, seu celular, seu estoque. Não precisa ser profissional. A gente cuida do resto.",
+      tag: "HOJE · 5 min do seu tempo",
     },
     {
       icon: Sparkles,
-      title: "A Titan cria",
-      desc: "Nossa equipe + IA transforma em vídeos, criativos e legendas.",
+      title: "Você recebe 1 vídeo profissional pronto pra vender",
+      desc: "Reel com IA. Som. Efeitos. Legendas. Tudo otimizado pro algoritmo. Não fica óbvio que é IA. Fica óbvio que é profissional.",
+      tag: "48H DEPOIS · 0 min do seu tempo",
     },
     {
       icon: Rocket,
-      title: "Publique e venda",
-      desc: "Receba o conteúdo pronto. Publique. Venda mais.",
+      title: "Publica e vende mais",
+      desc: "Clica em publicar. Seu alcance cresce. Suas vendas crescem. Consistência = crescimento.",
+      tag: "SEGUNDA · 2 min do seu tempo",
     },
   ];
   return (
@@ -310,10 +313,10 @@ function HowItWorks() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Como Funciona</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Simples assim.
+            Como você passa de 3 posts/semana para <span className="text-gradient-brand">5+ em 2 semanas</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Três passos para transformar seus produtos em conteúdo profissional.
+            De 3 posts/semana com lacunas → 5+ posts/semana sem stress. Sem contratação. Sem freelancer folgado.
           </p>
         </Reveal>
 
@@ -329,7 +332,8 @@ function HowItWorks() {
                     </div>
                     <div className="font-display text-5xl font-bold text-white/5">0{i + 1}</div>
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
+                  <div className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#3B82F6]">{s.tag}</div>
+                  <h3 className="mt-2 font-display text-xl font-semibold text-white">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
                 </div>
               </RevealItem>
@@ -344,7 +348,7 @@ function HowItWorks() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
           >
-            Quero começar agora <ArrowRight size={16} />
+            Quero meu vídeo demo grátis <ArrowRight size={16} />
           </a>
         </Reveal>
       </div>
