@@ -512,7 +512,7 @@ function Portfolio() {
               >
                 <img
                   src={it.src}
-                  alt={`Conteúdo de moda criado pela Titan - ${it.label}`}
+                  alt={it.alt}
                   loading="lazy"
                   width={704}
                   height={1216}
