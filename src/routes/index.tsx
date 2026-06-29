@@ -582,34 +582,16 @@ function VideoCatalog() {
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
               >
-                {v.src ? (
-                  <video
-                    src={v.src}
-                    poster={v.poster}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={v.poster}
-                      alt={v.label}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30" />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <motion.div
-                        whileHover={{ scale: 1.08 }}
-                        className="grid h-16 w-16 place-items-center rounded-full bg-white/10 text-white backdrop-blur-md ring-1 ring-white/20 glow-brand"
-                      >
-                        <Play size={26} className="ml-1 fill-white" />
-                      </motion.div>
-                    </div>
-                  </>
-                )}
+                <video
+                  src={v.src}
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
                 <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
                   <Video size={11} /> {v.label}
                 </div>
