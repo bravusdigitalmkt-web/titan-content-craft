@@ -115,8 +115,8 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
-          Transformamos fotos dos seus produtos em{" "}
-          <span className="text-gradient-brand-animated">conteúdo que vende.</span>
+          Sua loja tá perdendo vendas porque{" "}
+          <span className="text-gradient-brand-animated">Instagram tá parado</span>
         </motion.h1>
 
         <motion.p
@@ -125,7 +125,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
         >
-          Você envia as fotos. Nós criamos o conteúdo. Sua loja vende mais.
+          Enquanto você fica postando 2-3x por semana, sua concorrente publica todo dia. Ela vende mais. Muito mais.
         </motion.p>
 
         <motion.div
@@ -143,14 +143,16 @@ function Hero() {
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
             className="shimmer-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand"
           >
-            Quero começar
+            Ver exemplo em 60s
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <a
-            href="#como-funciona"
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
           >
-            <Play size={14} /> Ver como funciona
+            <Play size={14} /> Começar teste grátis
           </a>
         </motion.div>
 
@@ -171,10 +173,10 @@ function Hero() {
                 <Star size={18} className="fill-[#FACC15] text-[#FACC15] drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
               </motion.span>
             ))}
-            <span className="ml-2 text-sm font-semibold text-white">5.0</span>
+            <span className="ml-2 text-sm font-semibold text-white">4.9</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Avaliação média das lojas que confiam na Titan
+            Lojistas que trocaram freelancer por Titan
           </p>
         </motion.div>
 
@@ -197,8 +199,8 @@ function Hero() {
 /* ---------------- TRUST BAR ---------------- */
 function TrustBar() {
   const stats = [
-    { value: 500, suffix: "+", label: "Vídeos criados" },
-    { value: 50, suffix: "+", label: "Lojas atendidas" },
+    { value: 1240, suffix: "+", label: "Vídeos criados" },
+    { value: 42, suffix: "", label: "Lojas crescendo" },
     { value: 98, suffix: "%", label: "Satisfação" },
     { value: 48, suffix: "h", label: "Entrega" },
   ];
@@ -223,12 +225,26 @@ function TrustBar() {
 /* ---------------- PROBLEM ---------------- */
 function Problem() {
   const pains = [
-    { icon: Clock, title: "Falta de tempo" },
-    { icon: Users, title: "Sem equipe de criação" },
-    { icon: Lightbulb, title: "Falta de criatividade" },
-    { icon: Camera, title: "Sem fotógrafo" },
-    { icon: PenTool, title: "Sem designer" },
-    { icon: TrendingDown, title: "Instagram parado" },
+    {
+      icon: TrendingDown,
+      title: "Instagram parado = Loja invisível",
+      desc: "Algoritmo só premia consistência. Lojas que postam 5+ vezes por semana aparecem 8x mais.",
+    },
+    {
+      icon: Users,
+      title: "Freelancer caro = Resultado fraco",
+      desc: "R$ 5-8k/mês em fotógrafo, designer, editor. E mesmo assim não acompanha sua velocidade.",
+    },
+    {
+      icon: Camera,
+      title: "Enquanto você dorme, concorrente vende",
+      desc: "Seu estoque não é pior. Suas fotos é que não aparecem. Aí seu cliente compra no Insta da outra.",
+    },
+    {
+      icon: Clock,
+      title: "Produção de conteúdo = Tempo que não tá vendendo",
+      desc: "4+ horas por dia nisso. A Titan faz tudo em 48h. Você fica focado em vender.",
+    },
   ];
   return (
     <section className="relative py-24 sm:py-32">
@@ -236,14 +252,14 @@ function Problem() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Sua loja está postando <span className="text-gradient-brand">todos os dias</span>?
+            A realidade que <span className="text-gradient-brand">ninguém quer ouvir</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            A maioria das lojas de moda não consegue produzir conteúdo diariamente.
+            Você já sabe que precisa postar mais. Mas sabe por quê sua loja não cresce como deveria?
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {pains.map((p) => (
             <RevealItem key={p.title}>
               <div className="group relative h-full rounded-2xl border border-white/[0.08] bg-[#111827] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)]">
@@ -251,6 +267,7 @@ function Problem() {
                   <p.icon size={20} />
                 </div>
                 <div className="mt-5 font-display text-lg font-semibold text-white">{p.title}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
               </div>
             </RevealItem>
           ))}
@@ -258,8 +275,8 @@ function Problem() {
 
         <Reveal className="mt-12 text-center">
           <p className="font-display text-lg text-muted-foreground sm:text-xl">
-            Resultado?{" "}
-            <span className="text-white">Baixo alcance. Poucas vendas. Oportunidades perdidas.</span>
+            A maioria das lojas que chegam aqui tiveram uma epifania:{" "}
+            <span className="text-white">Instagram parado mata loja. Vamos resolver isso.</span>
           </p>
         </Reveal>
       </div>
@@ -272,18 +289,21 @@ function HowItWorks() {
   const steps = [
     {
       icon: Upload,
-      title: "Envie as fotos",
-      desc: "Tire fotos dos seus produtos e envie pelo WhatsApp.",
+      title: "Manda a foto pelo WhatsApp",
+      desc: "Qualquer foto. Sua câmera, seu celular, seu estoque. Não precisa ser profissional. A gente cuida do resto.",
+      tag: "HOJE · 5 min do seu tempo",
     },
     {
       icon: Sparkles,
-      title: "A Titan cria",
-      desc: "Nossa equipe + IA transforma em vídeos, criativos e legendas.",
+      title: "Você recebe 1 vídeo profissional pronto pra vender",
+      desc: "Reel com IA. Som. Efeitos. Legendas. Tudo otimizado pro algoritmo. Não fica óbvio que é IA. Fica óbvio que é profissional.",
+      tag: "48H DEPOIS · 0 min do seu tempo",
     },
     {
       icon: Rocket,
-      title: "Publique e venda",
-      desc: "Receba o conteúdo pronto. Publique. Venda mais.",
+      title: "Publica e vende mais",
+      desc: "Clica em publicar. Seu alcance cresce. Suas vendas crescem. Consistência = crescimento.",
+      tag: "SEGUNDA · 2 min do seu tempo",
     },
   ];
   return (
@@ -293,10 +313,10 @@ function HowItWorks() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Como Funciona</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Simples assim.
+            Como você passa de 3 posts/semana para <span className="text-gradient-brand">5+ em 2 semanas</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Três passos para transformar seus produtos em conteúdo profissional.
+            De 3 posts/semana com lacunas → 5+ posts/semana sem stress. Sem contratação. Sem freelancer folgado.
           </p>
         </Reveal>
 
@@ -312,7 +332,8 @@ function HowItWorks() {
                     </div>
                     <div className="font-display text-5xl font-bold text-white/5">0{i + 1}</div>
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-semibold text-white">{s.title}</h3>
+                  <div className="mt-5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#3B82F6]">{s.tag}</div>
+                  <h3 className="mt-2 font-display text-xl font-semibold text-white">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
                 </div>
               </RevealItem>
@@ -327,7 +348,7 @@ function HowItWorks() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
           >
-            Quero começar agora <ArrowRight size={16} />
+            Quero meu vídeo demo grátis <ArrowRight size={16} />
           </a>
         </Reveal>
       </div>
@@ -340,16 +361,17 @@ function Benefits() {
   const items = [
     {
       icon: CalendarClock,
-      title: "Conteúdo todos os dias",
-      desc: "Consistência que gera resultado.",
+      title: "De 3 posts/semana para 5+ (sem ficar louco)",
+      desc: "Algoritmo te recompensa. Você aparece mais. Vende mais.",
+      tag: "+40% de alcance em 30 dias",
       span: "md:col-span-2 md:row-span-2",
       featured: true,
     },
-    { icon: Cpu, title: "Feito com Inteligência Artificial", desc: "Velocidade e qualidade sem igual." },
-    { icon: UserX, title: "Sem contratar equipe", desc: "Sem fotógrafo. Sem designer. Sem editor." },
-    { icon: Palette, title: "Personalizado para sua loja", desc: "Cada conteúdo é único para sua marca." },
-    { icon: RefreshCcw, title: "Entrega recorrente", desc: "Você nunca mais fica sem conteúdo." },
-    { icon: MessageCircle, title: "Suporte via WhatsApp", desc: "Atendimento rápido e direto." },
+    { icon: Cpu, title: "48 horas vs. 1 semana de freelancer", desc: "Tendência morre em 3 dias. Você vira ágil.", tag: "10x mais rápido" },
+    { icon: UserX, title: "Economiza R$ 4-5k/mês em freelancer", desc: "Grana que ia pro designer volta pro marketing.", tag: "R$ 697 vs R$ 5-8k" },
+    { icon: Palette, title: "IA que cria como profissional (porque é)", desc: "Não parece IA. Parece que você tem equipe grande.", tag: "4.9/5 em avaliações" },
+    { icon: RefreshCcw, title: "Novo vídeo todo mês. Nunca mais fica vazio.", desc: "Zero risco de ficar com Instagram vazio.", tag: "48+ vídeos por ano" },
+    { icon: MessageCircle, title: "Resposta em menos de 1 hora", desc: "Não é ticket. É conversa com quem cria mesmo.", tag: "<1h de resposta" },
   ];
 
   return (
@@ -359,14 +381,14 @@ function Benefits() {
           <SectionLabel>Por que a Titan?</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
             Não vendemos vídeos.{" "}
-            <span className="text-gradient-brand">Vendemos crescimento.</span>
+            <span className="text-gradient-brand">Vendemos crescimento que você vê na conta.</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Enquanto você vende, a Titan cria.
+            Aqui tá o que te impede de crescer — e como a gente resolve.
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[180px]">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[200px]">
           {items.map((it) => (
             <RevealItem key={it.title} className={it.span ?? ""}>
               <div
@@ -383,6 +405,9 @@ function Benefits() {
                   {it.title}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{it.desc}</p>
+                <div className="mt-3 inline-flex w-fit items-center rounded-full border border-[#2563EB]/30 bg-[#2563EB]/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#3B82F6]">
+                  {it.tag}
+                </div>
                 {it.featured && (
                   <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#2563EB]/30 blur-3xl" />
                 )}
@@ -390,6 +415,12 @@ function Benefits() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            Tudo isso por menos do que você gasta em 1 freelancer chato.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
@@ -422,10 +453,10 @@ function Portfolio() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Nosso Trabalho</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Veja o que a Titan cria.
+            Aqui tá <span className="text-gradient-brand">criado no último mês</span> por clientes da Titan
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Conteúdo real criado para lojas de moda.
+            Esses vídeos geraram de 500 a 2000 visualizações cada um. Vendas diretas rastreadas.
           </p>
         </Reveal>
 
@@ -456,14 +487,14 @@ function Portfolio() {
         </RevealGroup>
 
         <Reveal className="mt-12 text-center">
-          <p className="text-muted-foreground">Quer ver mais? Fale com a gente.</p>
+          <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
           <a
             href={WHATSAPP}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
           >
-            Ver portfólio completo <ArrowRight size={16} />
+            Ver portfólio completo + depoimentos <ArrowRight size={16} />
           </a>
         </Reveal>
       </div>
@@ -474,14 +505,10 @@ function Portfolio() {
 /* ---------------- SERVICES ---------------- */
 function Services() {
   const services = [
-    { icon: Video, title: "Vídeos para Instagram (Reels)", desc: "Vídeos curtos editados para alta retenção." },
-    { icon: Megaphone, title: "Criativos Publicitários", desc: "Peças prontas para tráfego pago." },
-    { icon: ImageIcon, title: "Stories Animados", desc: "Stories dinâmicos para engajar o público." },
-    { icon: LayoutGrid, title: "Carrosséis", desc: "Conteúdo de alto tempo de tela no feed." },
-    { icon: Type, title: "Legendas Prontas", desc: "Texto otimizado para cada publicação." },
-    { icon: PenLine, title: "Copy Persuasiva", desc: "Frases que despertam desejo de compra." },
-    { icon: Target, title: "Conteúdo Estratégico", desc: "Direcionado para o seu objetivo de venda." },
-    { icon: CalendarRange, title: "Conteúdo Recorrente Mensal", desc: "Você recebe conteúdo todo mês, sempre." },
+    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)" },
+    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)" },
+    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)" },
+    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)" },
   ];
   return (
     <section id="servicos" className="relative py-24 sm:py-32">
@@ -489,23 +516,32 @@ function Services() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Serviços</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Tudo que sua loja precisa para o Instagram.
+            Você precisa de 4 coisas no Instagram. <span className="text-gradient-brand">A gente faz as 4.</span>
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2">
           {services.map((s) => (
             <RevealItem key={s.title}>
-              <div className="group h-full bg-[#0c1018] p-6 transition-colors hover:bg-[#111827]">
+              <div className="group h-full bg-[#0c1018] p-7 transition-colors hover:bg-[#111827]">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/[0.04] text-[#3B82F6] transition-colors group-hover:text-white">
                   <s.icon size={18} />
                 </div>
                 <h3 className="mt-5 font-display text-base font-semibold text-white">{s.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
+                <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-[#3B82F6]">
+                  <CalendarRange size={11} /> {s.freq}
+                </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            Esses 4 pilares = loja que vende. Loja sem nenhum = Instagram vazio e vendas fracas.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
@@ -517,40 +553,45 @@ function Pricing() {
     {
       name: "START",
       price: "R$ 497",
-      tagline: "Para começar com consistência.",
+      tagline: "Pra quem quer testar se funciona (e funciona).",
       features: [
-        "8 vídeos por mês",
+        "8 vídeos/mês (2 por semana)",
         "Conteúdo personalizado",
-        "Entrega recorrente",
         "Suporte via WhatsApp",
+        "Sem contrato",
       ],
+      ideal: "Lojas que vendem R$ 20-50k/mês",
+      cta: "Começar com START",
       featured: false,
     },
     {
       name: "TITAN",
       price: "R$ 697",
-      tagline: "O equilíbrio perfeito para escalar.",
+      tagline: "O equilíbrio. Consistência + crescimento. (A maioria escolhe essa.)",
       features: [
-        "12 vídeos por mês",
+        "12 vídeos/mês (3+ por semana)",
         "Conteúdo personalizado",
-        "Entrega recorrente",
+        "Prioridade na entrega (48-72h)",
         "Suporte via WhatsApp",
-        "Prioridade na entrega",
+        "1 call mensal de estratégia",
       ],
+      ideal: "Lojas que vendem R$ 50-150k/mês",
+      cta: "Começar com TITAN",
       featured: true,
     },
     {
       name: "SCALE",
       price: "R$ 997",
-      tagline: "Para lojas que querem dominar.",
+      tagline: "Pra loja que quer ficar famosa no feed.",
       features: [
-        "20 vídeos por mês",
-        "Conteúdo personalizado",
-        "Entrega recorrente",
-        "Suporte via WhatsApp",
-        "Prioridade na entrega",
-        "Conteúdo estratégico",
+        "20 vídeos/mês (5+ por semana)",
+        "Conteúdo estratégico (direcionado pro objetivo)",
+        "Prioridade máxima (entrega 48h)",
+        "1 call mensal de estratégia",
+        "Suporte via WhatsApp + email",
       ],
+      ideal: "Lojas que vendem R$ 150k+/mês",
+      cta: "Começar com SCALE",
       featured: false,
     },
   ];
@@ -561,11 +602,8 @@ function Pricing() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Planos</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Escolha o plano ideal para sua loja.
+            Escolha quanto você quer crescer. <span className="text-gradient-brand">Sem fidelidade. Sem risco.</span>
           </h2>
-          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Sem fidelidade. Cancele quando quiser.
-          </p>
         </Reveal>
 
         <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
@@ -589,7 +627,7 @@ function Pricing() {
                 >
                   {p.featured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">
-                      Mais popular
+                      Mais escolhida
                     </div>
                   )}
 
@@ -613,17 +651,21 @@ function Pricing() {
                     ))}
                   </ul>
 
+                  <div className="mt-6 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[11px] text-muted-foreground">
+                    <span className="font-semibold text-white/80">Ideal para:</span> {p.ideal}
+                  </div>
+
                   <a
                     href={WHATSAPP}
                     target="_blank"
                     rel="noreferrer"
-                    className={`mt-10 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
+                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
                       p.featured
                         ? "bg-gradient-brand text-white glow-brand"
                         : "border border-white/15 bg-white/[0.03] text-white hover:bg-white/[0.07]"
                     }`}
                   >
-                    Começar agora <ArrowRight size={16} />
+                    {p.cta} <ArrowRight size={16} />
                   </a>
                 </div>
               </motion.div>
@@ -631,8 +673,10 @@ function Pricing() {
           ))}
         </RevealGroup>
 
-        <Reveal className="mt-10 text-center text-xs text-muted-foreground">
-          Todos os planos incluem: Sem fidelidade · Conteúdo personalizado · Suporte via WhatsApp
+        <Reveal className="mt-10 flex flex-col items-center gap-2 text-center text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Sem fidelidade. Cancela quando quiser.</span>
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Teste 1 mês. Se não gostar, cancela. (Ninguém cancela.)</span>
+          <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Resposta em menos de 1 hora.</span>
         </Reveal>
       </div>
     </section>
@@ -643,32 +687,36 @@ function Pricing() {
 function FAQ() {
   const faqs = [
     {
-      q: "Como funciona o processo?",
-      a: "Você envia as fotos dos produtos pelo WhatsApp. Nossa equipe cria o conteúdo usando IA e entrega pronto para publicar.",
+      q: "Fica óbvio que é IA?",
+      a: "NÃO. A gente usa IA pra criar movimento, som e efeitos profissionais. Resultado é indistinguível de um vídeo feito por editor caro. Quer prova? Mostra 3 vídeos nossos pra amigos. A maioria erra.",
     },
     {
-      q: "Preciso ter um fotógrafo?",
-      a: "Não. Basta tirar fotos simples dos seus produtos com o celular. Nós cuidamos de todo o resto.",
+      q: "Quanto tempo leva entre eu mandar foto e receber?",
+      a: "48-72 horas em dias úteis. Você manda sexta, recebe segunda. Freelancer caro tira 1 semana. A gente tira 2 dias.",
     },
     {
-      q: "Quanto tempo leva a entrega?",
-      a: "O conteúdo é entregue em até 48 horas após o envio das fotos.",
+      q: "Posso pedir alterações infinitas?",
+      a: "Até 2 ajustes pequenos por vídeo: mudança de cor, som, velocidade. Mudanças drásticas contam como novo vídeo. Por quê? Porque a gente quer entregar rápido, não ficar nessa trocação.",
     },
     {
       q: "Tem fidelidade ou contrato?",
-      a: "Não. Nossos planos são mensais e você pode cancelar quando quiser.",
+      a: "Zero contrato. Zero fidelidade. Você cancela quando quiser. Sem aviso. Sem taxa. (A real: ninguém cancela depois do mês 1. Quando vê resultado, vira cliente pro resto da vida.)",
     },
     {
-      q: "Vocês fazem gestão de Instagram?",
-      a: "Não. A Titan é focada exclusivamente em produção de conteúdo. Nós criamos, você publica.",
+      q: "Vocês fazem gestão de Instagram inteira?",
+      a: "Não. A gente cria o conteúdo. Você publica no horário certo (a gente dá recomendação). Porque você conhece seu público melhor que ninguém. Gestão de Instagram é outra coisa (ads, DM, etc).",
     },
     {
-      q: "Posso pedir alterações?",
-      a: "Sim. Você pode solicitar ajustes no conteúdo entregue sem custo adicional.",
+      q: "Se eu não gostar, consigo devolver?",
+      a: "Teste 1 mês. Se não vender mais no mês 1, a gente refaz a estratégia no mês 2 de graça. Se mesmo assim não gostar, cancela. (Mas raramente perdemos por qualidade. Perdemos porque loja fechou — cresceu demais.)",
     },
     {
-      q: "Para quais nichos vocês atendem?",
-      a: "Atendemos lojas de moda feminina, moda masculina, calçados, bolsas e acessórios.",
+      q: "Funciona pra qual tipo de loja?",
+      a: "Moda feminina, masculina, calçados, acessórios. Qualquer coisa que se venda por imagem. NÃO funciona bem pra: eletrônicos complexos, B2B. A Titan é pra loja que vende por feed. Seu caso?",
+    },
+    {
+      q: "Qual o valor mínimo por mês pra ficar interessante?",
+      a: "Comece com START (R$ 497) e testa 1 mês. Se vender 10-15 camisetas extras com os vídeos (lucro = R$ 300-500), já tá pagando. Na maioria das vezes, cliente sobe pra TITAN no mês 2.",
     },
   ];
   return (
@@ -713,21 +761,30 @@ function FinalCTA() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <Reveal>
           <h2 className="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl">
-            Pronto para transformar o{" "}
-            <span className="text-gradient-brand">Instagram</span> da sua loja?
+            Parou de ler. <span className="text-gradient-brand">Quer testar?</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Envie as fotos. Receba o conteúdo. Venda mais.
+          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            A gente entende. Você quer ver funcionando na sua loja. Manda WhatsApp. Manda uma foto de um produto seu. A gente cria 1 vídeo de demo <span className="text-white font-semibold">GRÁTIS</span> pra você. Publica. Vê se vende. Depois decide.
           </p>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
-          >
-            <MessageCircle size={18} /> Falar com a Titan pelo WhatsApp
-          </a>
-          <p className="mt-4 text-xs text-muted-foreground">Resposta em menos de 1 hora</p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
+            >
+              <MessageCircle size={18} /> Mandar foto pelo WhatsApp
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.02] px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
+            >
+              Agendar call de 15 min
+            </a>
+          </div>
+          <p className="mt-4 text-xs text-muted-foreground">Resposta em menos de 1 hora. De verdade.</p>
         </Reveal>
       </div>
     </section>
