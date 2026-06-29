@@ -361,16 +361,17 @@ function Benefits() {
   const items = [
     {
       icon: CalendarClock,
-      title: "Conteúdo todos os dias",
-      desc: "Consistência que gera resultado.",
+      title: "De 3 posts/semana para 5+ (sem ficar louco)",
+      desc: "Algoritmo te recompensa. Você aparece mais. Vende mais.",
+      tag: "+40% de alcance em 30 dias",
       span: "md:col-span-2 md:row-span-2",
       featured: true,
     },
-    { icon: Cpu, title: "Feito com Inteligência Artificial", desc: "Velocidade e qualidade sem igual." },
-    { icon: UserX, title: "Sem contratar equipe", desc: "Sem fotógrafo. Sem designer. Sem editor." },
-    { icon: Palette, title: "Personalizado para sua loja", desc: "Cada conteúdo é único para sua marca." },
-    { icon: RefreshCcw, title: "Entrega recorrente", desc: "Você nunca mais fica sem conteúdo." },
-    { icon: MessageCircle, title: "Suporte via WhatsApp", desc: "Atendimento rápido e direto." },
+    { icon: Cpu, title: "48 horas vs. 1 semana de freelancer", desc: "Tendência morre em 3 dias. Você vira ágil.", tag: "10x mais rápido" },
+    { icon: UserX, title: "Economiza R$ 4-5k/mês em freelancer", desc: "Grana que ia pro designer volta pro marketing.", tag: "R$ 697 vs R$ 5-8k" },
+    { icon: Palette, title: "IA que cria como profissional (porque é)", desc: "Não parece IA. Parece que você tem equipe grande.", tag: "4.9/5 em avaliações" },
+    { icon: RefreshCcw, title: "Novo vídeo todo mês. Nunca mais fica vazio.", desc: "Zero risco de ficar com Instagram vazio.", tag: "48+ vídeos por ano" },
+    { icon: MessageCircle, title: "Resposta em menos de 1 hora", desc: "Não é ticket. É conversa com quem cria mesmo.", tag: "<1h de resposta" },
   ];
 
   return (
@@ -380,14 +381,14 @@ function Benefits() {
           <SectionLabel>Por que a Titan?</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
             Não vendemos vídeos.{" "}
-            <span className="text-gradient-brand">Vendemos crescimento.</span>
+            <span className="text-gradient-brand">Vendemos crescimento que você vê na conta.</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Enquanto você vende, a Titan cria.
+            Aqui tá o que te impede de crescer — e como a gente resolve.
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[180px]">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[200px]">
           {items.map((it) => (
             <RevealItem key={it.title} className={it.span ?? ""}>
               <div
@@ -404,6 +405,9 @@ function Benefits() {
                   {it.title}
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{it.desc}</p>
+                <div className="mt-3 inline-flex w-fit items-center rounded-full border border-[#2563EB]/30 bg-[#2563EB]/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#3B82F6]">
+                  {it.tag}
+                </div>
                 {it.featured && (
                   <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#2563EB]/30 blur-3xl" />
                 )}
@@ -411,6 +415,12 @@ function Benefits() {
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            Tudo isso por menos do que você gasta em 1 freelancer chato.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
