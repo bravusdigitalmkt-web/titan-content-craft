@@ -453,10 +453,10 @@ function Portfolio() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Nosso Trabalho</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Veja o que a Titan cria.
+            Aqui tá <span className="text-gradient-brand">criado no último mês</span> por clientes da Titan
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            Conteúdo real criado para lojas de moda.
+            Esses vídeos geraram de 500 a 2000 visualizações cada um. Vendas diretas rastreadas.
           </p>
         </Reveal>
 
@@ -487,14 +487,14 @@ function Portfolio() {
         </RevealGroup>
 
         <Reveal className="mt-12 text-center">
-          <p className="text-muted-foreground">Quer ver mais? Fale com a gente.</p>
+          <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
           <a
             href={WHATSAPP}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
           >
-            Ver portfólio completo <ArrowRight size={16} />
+            Ver portfólio completo + depoimentos <ArrowRight size={16} />
           </a>
         </Reveal>
       </div>
