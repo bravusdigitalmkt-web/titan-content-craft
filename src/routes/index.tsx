@@ -115,8 +115,8 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
-          Transformamos fotos dos seus produtos em{" "}
-          <span className="text-gradient-brand-animated">conteúdo que vende.</span>
+          Sua loja tá perdendo vendas porque{" "}
+          <span className="text-gradient-brand-animated">Instagram tá parado</span>
         </motion.h1>
 
         <motion.p
@@ -125,7 +125,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
         >
-          Você envia as fotos. Nós criamos o conteúdo. Sua loja vende mais.
+          Enquanto você fica postando 2-3x por semana, sua concorrente publica todo dia. Ela vende mais. Muito mais.
         </motion.p>
 
         <motion.div
@@ -143,14 +143,16 @@ function Hero() {
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
             className="shimmer-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand"
           >
-            Quero começar
+            Ver exemplo em 60s
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <a
-            href="#como-funciona"
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
           >
-            <Play size={14} /> Ver como funciona
+            <Play size={14} /> Começar teste grátis
           </a>
         </motion.div>
 
