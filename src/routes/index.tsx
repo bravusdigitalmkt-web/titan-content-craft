@@ -47,17 +47,58 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Titan Criativos — Conteúdo com IA para lojas de moda" },
+      { title: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
       {
         name: "description",
         content:
-          "Transforme fotos dos seus produtos em conteúdo pronto para o Instagram. Reels, criativos, stories e carrosséis com Inteligência Artificial.",
+          "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis.",
       },
-      { property: "og:title", content: "Titan Criativos — Conteúdo com IA para lojas de moda" },
+      { name: "keywords", content: "agência de vídeos para moda, reels com IA, conteúdo para loja de moda, vídeos para Instagram, marketing de moda, reels profissionais" },
+      { property: "og:title", content: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
       {
         property: "og:description",
         content:
-          "Você envia as fotos. Nós criamos o conteúdo com IA. Sua loja vende mais.",
+          "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://titan-content-craft.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Agência de Vídeos para Moda | Reels com IA | Titan Criativos" },
+      { name: "twitter:description", content: "Sua loja vende mais com Reels profissionais. +40% alcance em 30 dias. 48h entrega. Teste grátis." },
+    ],
+    links: [{ rel: "canonical", href: "https://titan-content-craft.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Titan Criativos",
+          url: "https://titan-content-craft.lovable.app/",
+          description: "Agência de vídeos para moda com IA. Reels profissionais para lojas de moda em 48h.",
+          sameAs: ["https://instagram.com/titan.criativos"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+55-61-98239-4985",
+            contactType: "sales",
+            email: "contato@titancriativos.com",
+            areaServed: "BR",
+            availableLanguage: ["Portuguese"],
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "Fica óbvio que é IA?", acceptedAnswer: { "@type": "Answer", text: "Não. Usamos IA para criar movimento, som e efeitos profissionais. O resultado é indistinguível de um vídeo feito por editor caro." } },
+            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48-72 horas em dias úteis. Você manda na sexta, recebe na segunda." } },
+            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Zero contrato. Zero fidelidade. Cancele quando quiser, sem taxa." } },
+            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios — qualquer loja que vende por imagem no Instagram." } },
+          ],
+        }),
       },
     ],
   }),
@@ -115,8 +156,8 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mt-7 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
-          Sua loja tá perdendo vendas porque{" "}
-          <span className="text-gradient-brand-animated">Instagram tá parado</span>
+          Agência de Vídeos para Moda com{" "}
+          <span className="text-gradient-brand-animated">Reels feitos por IA</span>
         </motion.h1>
 
         <motion.p
@@ -125,7 +166,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
         >
-          Enquanto você fica postando 2-3x por semana, sua concorrente publica todo dia. Ela vende mais. Muito mais.
+          Sua loja vende mais com Reels profissionais — 48h de entrega, sem fotógrafo.
         </motion.p>
 
         <motion.div
