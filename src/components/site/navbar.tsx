@@ -39,7 +39,7 @@ export function Navbar() {
           <img
             src={titanLogo.url}
             alt="Logo Titan Criativos"
-            className="h-12 w-12 shrink-0 rounded-full object-contain ring-1 ring-primary/40 glow-brand"
+            className="h-14 w-14 shrink-0 rounded-full object-contain glow-brand"
           />
           <span className="font-display text-base font-bold tracking-tight text-white">
             Titan <span className="text-gradient-brand-animated">Criativos</span>
