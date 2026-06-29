@@ -553,12 +553,12 @@ function Portfolio() {
 /* ---------------- VIDEO CATALOG ---------------- */
 function VideoCatalog() {
   const videos = [
-    { src: reel1.url, poster: fashion1, label: "Reel · Lançamento" },
-    { src: reel2.url, poster: fashion2, label: "Reel · Coleção" },
-    { src: reel3.url, poster: fashion3, label: "Reel · Provador" },
-    { src: reel4.url, poster: fashion5, label: "Reel · Look do dia" },
-    { src: reel5.url, poster: fashion6, label: "Reel · Editorial" },
-    { src: reel6.url, poster: fashion8, label: "Reel · Anúncio" },
+    { src: reel1.url, label: "Reel · Lançamento" },
+    { src: reel2.url, label: "Reel · Coleção" },
+    { src: reel3.url, label: "Reel · Provador" },
+    { src: reel4.url, label: "Reel · Look do dia" },
+    { src: reel5.url, label: "Reel · Editorial" },
+    { src: reel6.url, label: "Reel · Anúncio" },
   ];
   return (
     <section id="catalogo" className="relative py-24 sm:py-32">
