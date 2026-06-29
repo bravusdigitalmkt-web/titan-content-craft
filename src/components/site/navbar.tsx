@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import titanLogo from "@/assets/titan-logo.jpg.asset.json";
+import titanLogo from "@/assets/titan-logo.png.asset.json";
 
 const links = [
   { href: "#como-funciona", label: "Como Funciona" },
