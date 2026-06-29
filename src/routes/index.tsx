@@ -577,29 +577,7 @@ function VideoCatalog() {
         <RevealGroup className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5" stagger={0.06}>
           {videos.map((v, i) => (
             <RevealItem key={i}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                className="group relative aspect-[9/16] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] shadow-[0_20px_60px_-30px_rgba(37,99,235,0.5)]"
-              >
-                <video
-                  src={v.src}
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
-                  <Video size={11} /> {v.label}
-                </div>
-                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between text-[11px] text-white/80">
-                  <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">9:16</span>
-                  <span className="rounded-full bg-black/50 px-2 py-0.5 backdrop-blur">HD</span>
-                </div>
-              </motion.div>
+              <ReelCard src={v.src} label={v.label} />
             </RevealItem>
           ))}
         </RevealGroup>
