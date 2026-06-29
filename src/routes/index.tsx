@@ -225,12 +225,26 @@ function TrustBar() {
 /* ---------------- PROBLEM ---------------- */
 function Problem() {
   const pains = [
-    { icon: Clock, title: "Falta de tempo" },
-    { icon: Users, title: "Sem equipe de criação" },
-    { icon: Lightbulb, title: "Falta de criatividade" },
-    { icon: Camera, title: "Sem fotógrafo" },
-    { icon: PenTool, title: "Sem designer" },
-    { icon: TrendingDown, title: "Instagram parado" },
+    {
+      icon: TrendingDown,
+      title: "Instagram parado = Loja invisível",
+      desc: "Algoritmo só premia consistência. Lojas que postam 5+ vezes por semana aparecem 8x mais.",
+    },
+    {
+      icon: Users,
+      title: "Freelancer caro = Resultado fraco",
+      desc: "R$ 5-8k/mês em fotógrafo, designer, editor. E mesmo assim não acompanha sua velocidade.",
+    },
+    {
+      icon: Camera,
+      title: "Enquanto você dorme, concorrente vende",
+      desc: "Seu estoque não é pior. Suas fotos é que não aparecem. Aí seu cliente compra no Insta da outra.",
+    },
+    {
+      icon: Clock,
+      title: "Produção de conteúdo = Tempo que não tá vendendo",
+      desc: "4+ horas por dia nisso. A Titan faz tudo em 48h. Você fica focado em vender.",
+    },
   ];
   return (
     <section className="relative py-24 sm:py-32">
@@ -238,14 +252,14 @@ function Problem() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Sua loja está postando <span className="text-gradient-brand">todos os dias</span>?
+            A realidade que <span className="text-gradient-brand">ninguém quer ouvir</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            A maioria das lojas de moda não consegue produzir conteúdo diariamente.
+            Você já sabe que precisa postar mais. Mas sabe por quê sua loja não cresce como deveria?
           </p>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {pains.map((p) => (
             <RevealItem key={p.title}>
               <div className="group relative h-full rounded-2xl border border-white/[0.08] bg-[#111827] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)]">
@@ -253,6 +267,7 @@ function Problem() {
                   <p.icon size={20} />
                 </div>
                 <div className="mt-5 font-display text-lg font-semibold text-white">{p.title}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
               </div>
             </RevealItem>
           ))}
@@ -260,8 +275,8 @@ function Problem() {
 
         <Reveal className="mt-12 text-center">
           <p className="font-display text-lg text-muted-foreground sm:text-xl">
-            Resultado?{" "}
-            <span className="text-white">Baixo alcance. Poucas vendas. Oportunidades perdidas.</span>
+            A maioria das lojas que chegam aqui tiveram uma epifania:{" "}
+            <span className="text-white">Instagram parado mata loja. Vamos resolver isso.</span>
           </p>
         </Reveal>
       </div>
