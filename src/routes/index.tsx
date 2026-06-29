@@ -505,14 +505,10 @@ function Portfolio() {
 /* ---------------- SERVICES ---------------- */
 function Services() {
   const services = [
-    { icon: Video, title: "Vídeos para Instagram (Reels)", desc: "Vídeos curtos editados para alta retenção." },
-    { icon: Megaphone, title: "Criativos Publicitários", desc: "Peças prontas para tráfego pago." },
-    { icon: ImageIcon, title: "Stories Animados", desc: "Stories dinâmicos para engajar o público." },
-    { icon: LayoutGrid, title: "Carrosséis", desc: "Conteúdo de alto tempo de tela no feed." },
-    { icon: Type, title: "Legendas Prontas", desc: "Texto otimizado para cada publicação." },
-    { icon: PenLine, title: "Copy Persuasiva", desc: "Frases que despertam desejo de compra." },
-    { icon: Target, title: "Conteúdo Estratégico", desc: "Direcionado para o seu objetivo de venda." },
-    { icon: CalendarRange, title: "Conteúdo Recorrente Mensal", desc: "Você recebe conteúdo todo mês, sempre." },
+    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)" },
+    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)" },
+    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)" },
+    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)" },
   ];
   return (
     <section id="servicos" className="relative py-24 sm:py-32">
@@ -520,23 +516,32 @@ function Services() {
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Serviços</SectionLabel>
           <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-5xl">
-            Tudo que sua loja precisa para o Instagram.
+            Você precisa de 4 coisas no Instagram. <span className="text-gradient-brand">A gente faz as 4.</span>
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2">
           {services.map((s) => (
             <RevealItem key={s.title}>
-              <div className="group h-full bg-[#0c1018] p-6 transition-colors hover:bg-[#111827]">
+              <div className="group h-full bg-[#0c1018] p-7 transition-colors hover:bg-[#111827]">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/[0.04] text-[#3B82F6] transition-colors group-hover:text-white">
                   <s.icon size={18} />
                 </div>
                 <h3 className="mt-5 font-display text-base font-semibold text-white">{s.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
+                <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-[#3B82F6]">
+                  <CalendarRange size={11} /> {s.freq}
+                </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <p className="text-sm text-muted-foreground">
+            Esses 4 pilares = loja que vende. Loja sem nenhum = Instagram vazio e vendas fracas.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
