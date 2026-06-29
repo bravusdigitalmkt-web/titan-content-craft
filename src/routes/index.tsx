@@ -771,7 +771,7 @@ function FAQ() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-3">
             {faqs.map((f, i) => (
               <AccordionItem
                 key={i}
