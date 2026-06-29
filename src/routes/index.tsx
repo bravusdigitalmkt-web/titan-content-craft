@@ -479,14 +479,14 @@ import fashion8 from "@/assets/fashion-8.jpg";
 
 function Portfolio() {
   const items = [
-    { label: "Reels", icon: Video, src: fashion1, h: "h-80" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64" },
-    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72" },
-    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64" },
-    { label: "Reels", icon: Video, src: fashion5, h: "h-64" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80" },
-    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60" },
-    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72" },
+    { label: "Reels", icon: Video, src: fashion1, h: "h-80", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
+    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
+    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
+    { label: "Reels", icon: Video, src: fashion5, h: "h-64", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
+    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
+    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
   ];
   return (
     <section className="relative py-24 sm:py-32">
