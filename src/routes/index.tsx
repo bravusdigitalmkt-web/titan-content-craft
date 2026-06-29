@@ -173,10 +173,10 @@ function Hero() {
                 <Star size={18} className="fill-[#FACC15] text-[#FACC15] drop-shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
               </motion.span>
             ))}
-            <span className="ml-2 text-sm font-semibold text-white">5.0</span>
+            <span className="ml-2 text-sm font-semibold text-white">4.9</span>
           </div>
           <p className="text-xs text-muted-foreground">
-            Avaliação média das lojas que confiam na Titan
+            Lojistas que trocaram freelancer por Titan
           </p>
         </motion.div>
 
