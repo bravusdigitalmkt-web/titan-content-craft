@@ -199,8 +199,8 @@ function Hero() {
 /* ---------------- TRUST BAR ---------------- */
 function TrustBar() {
   const stats = [
-    { value: 500, suffix: "+", label: "Vídeos criados" },
-    { value: 50, suffix: "+", label: "Lojas atendidas" },
+    { value: 1240, suffix: "+", label: "Vídeos criados" },
+    { value: 42, suffix: "", label: "Lojas crescendo" },
     { value: 98, suffix: "%", label: "Satisfação" },
     { value: 48, suffix: "h", label: "Entrega" },
   ];
