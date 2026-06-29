@@ -38,8 +38,8 @@ export function Navbar() {
         <a href="#top" className="flex items-center gap-2.5">
           <img
             src={titanLogo.url}
-            alt="Titan Criativos"
-            className="h-10 w-10 rounded-full object-cover ring-1 ring-primary/40 glow-brand"
+            alt="Logo Titan Criativos"
+            className="h-12 w-12 shrink-0 rounded-full bg-black object-contain ring-1 ring-primary/50 glow-brand"
           />
           <span className="font-display text-base font-bold tracking-tight text-white">
             Titan <span className="text-gradient-brand-animated">Criativos</span>

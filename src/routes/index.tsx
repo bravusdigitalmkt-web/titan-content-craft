@@ -800,8 +800,8 @@ function Footer() {
           <div className="flex items-center gap-2.5">
             <img
               src={titanLogo.url}
-              alt="Titan Criativos"
-              className="h-10 w-10 rounded-full object-cover ring-1 ring-primary/40"
+              alt="Logo Titan Criativos"
+              className="h-12 w-12 shrink-0 rounded-full bg-black object-contain ring-1 ring-primary/50"
             />
             <span className="font-display text-base font-bold text-white">Titan Criativos</span>
           </div>
