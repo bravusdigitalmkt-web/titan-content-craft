@@ -88,8 +88,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Titan Criativos — Conteúdo com IA para lojas de moda" },
       { name: "twitter:description", content: "Você envia as fotos. Nós criamos o conteúdo com Inteligência Artificial. Sua loja vende mais." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/00e1b6c3-cd35-4fb2-b12c-e04e02c26fc1/id-preview-8ff577b7--c72001bc-96c3-4338-9e4e-ea6c71c23c9b.lovable.app-1782733497679.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/00e1b6c3-cd35-4fb2-b12c-e04e02c26fc1/id-preview-8ff577b7--c72001bc-96c3-4338-9e4e-ea6c71c23c9b.lovable.app-1782733497679.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/5649b037-739b-4c25-a2b1-c5db60a73b30" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/5649b037-739b-4c25-a2b1-c5db60a73b30" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
