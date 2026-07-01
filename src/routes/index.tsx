@@ -145,9 +145,12 @@ function Page() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section className="relative isolate overflow-hidden pt-36 pb-28 sm:pt-44 sm:pb-36">
       <div className="absolute inset-0 grid-bg" />
+      <div className="aurora-bg" aria-hidden />
+      <div className="aurora-bg-2" aria-hidden />
       <BackgroundOrbs />
+
       <div className="relative mx-auto max-w-5xl px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
