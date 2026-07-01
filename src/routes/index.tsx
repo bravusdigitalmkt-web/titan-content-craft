@@ -13,6 +13,8 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/site/reveal";
 import { Counter } from "@/components/site/counter";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { Marquee } from "@/components/site/marquee";
+import titanLogo from "@/assets/titan-logo.png.asset.json";
+
 
 import {
   ArrowRight,
