@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
-import { Route as PortfolioAdmRouteImport } from './routes/portfolio.adm'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -29,43 +28,34 @@ const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
   path: '/portfolio/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortfolioAdmRoute = PortfolioAdmRouteImport.update({
-  id: '/portfolio/adm',
-  path: '/portfolio/adm',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/portfolio/adm': typeof PortfolioAdmRoute
   '/portfolio/': typeof PortfolioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/portfolio/adm': typeof PortfolioAdmRoute
   '/portfolio': typeof PortfolioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/portfolio/adm': typeof PortfolioAdmRoute
   '/portfolio/': typeof PortfolioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/portfolio/adm' | '/portfolio/'
+  fullPaths: '/' | '/sitemap.xml' | '/portfolio/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/portfolio/adm' | '/portfolio'
-  id: '__root__' | '/' | '/sitemap.xml' | '/portfolio/adm' | '/portfolio/'
+  to: '/' | '/sitemap.xml' | '/portfolio'
+  id: '__root__' | '/' | '/sitemap.xml' | '/portfolio/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  PortfolioAdmRoute: typeof PortfolioAdmRoute
   PortfolioIndexRoute: typeof PortfolioIndexRoute
 }
 
@@ -92,20 +82,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portfolio/adm': {
-      id: '/portfolio/adm'
-      path: '/portfolio/adm'
-      fullPath: '/portfolio/adm'
-      preLoaderRoute: typeof PortfolioAdmRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  PortfolioAdmRoute: PortfolioAdmRoute,
   PortfolioIndexRoute: PortfolioIndexRoute,
 }
 export const routeTree = rootRouteImport
