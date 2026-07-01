@@ -1,6 +1,4 @@
 import { createServerFn } from "@tanstack/react-start";
-import { useSession } from "@tanstack/react-start/server";
-import { createHash, timingSafeEqual } from "node:crypto";
 
 const BUCKET = "portfolio-videos";
 const CATEGORIES = [
@@ -11,36 +9,6 @@ const CATEGORIES = [
   "Carrosséis",
 ] as const;
 type Category = (typeof CATEGORIES)[number];
-
-type AdminSession = { ok?: boolean };
-
-function sessionConfig() {
-  const password = process.env.ADMIN_SESSION_SECRET;
-  if (!password) throw new Error("ADMIN_SESSION_SECRET not configured");
-  return {
-    password,
-    name: "titan-admin",
-    maxAge: 60 * 60 * 24 * 30, // 30 dias
-    cookie: {
-      httpOnly: true,
-      secure: true,
-      sameSite: "lax" as const,
-      path: "/",
-    },
-  };
-}
-
-function eq(a: string, b: string) {
-  const ah = createHash("sha256").update(a, "utf8").digest();
-  const bh = createHash("sha256").update(b, "utf8").digest();
-  return timingSafeEqual(ah, bh);
-}
-
-async function requireAdmin() {
-  const session = await useSession<AdminSession>(sessionConfig());
-  if (!session.data.ok) throw new Error("Unauthorized");
-  return session;
-}
 
 // ------------- PUBLIC -------------
 
@@ -66,47 +34,11 @@ export const listPortfolioVideos = createServerFn({ method: "GET" }).handler(
   },
 );
 
-// ------------- ADMIN AUTH -------------
-
-export const adminLogin = createServerFn({ method: "POST" })
-  .inputValidator((data: { user: string; password: string }) => data)
-  .handler(async ({ data }) => {
-    const user = process.env.ADMIN_USER;
-    const pass = process.env.ADMIN_PASSWORD;
-    if (!user || !pass) throw new Error("Admin credentials not configured");
-
-    const ok =
-      typeof data.user === "string" &&
-      typeof data.password === "string" &&
-      data.user.length > 0 &&
-      data.password.length > 0 &&
-      eq(data.user, user) &&
-      eq(data.password, pass);
-
-    if (!ok) return { ok: false as const };
-
-    const session = await useSession<AdminSession>(sessionConfig());
-    await session.update({ ok: true });
-    return { ok: true as const };
-  });
-
-export const adminLogout = createServerFn({ method: "POST" }).handler(async () => {
-  const session = await useSession<AdminSession>(sessionConfig());
-  await session.clear();
-  return { ok: true as const };
-});
-
-export const adminIsAuthed = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await useSession<AdminSession>(sessionConfig());
-  return { authed: !!session.data.ok };
-});
-
-// ------------- ADMIN OPS -------------
+// ------------- ADMIN OPS (sem login) -------------
 
 export const adminCreateUploadUrl = createServerFn({ method: "POST" })
   .inputValidator((data: { filename: string }) => data)
   .handler(async ({ data }) => {
-    // no auth — public admin panel
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const safe = (data.filename || "video.mp4").replace(/[^\w.-]/g, "_").slice(-60);
@@ -129,8 +61,6 @@ export const adminInsertVideo = createServerFn({ method: "POST" })
     }) => data,
   )
   .handler(async ({ data }) => {
-    // no auth — public admin panel
-
     if (!CATEGORIES.includes(data.category)) throw new Error("Categoria inválida");
     const title = String(data.title || "").trim();
     if (title.length < 1 || title.length > 120) throw new Error("Título inválido");
@@ -150,7 +80,6 @@ export const adminInsertVideo = createServerFn({ method: "POST" })
 export const adminDeleteVideo = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    // no auth — public admin panel
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { data: row } = await supabaseAdmin
