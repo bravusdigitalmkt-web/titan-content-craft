@@ -540,17 +540,17 @@ import fashion8 from "@/assets/fashion-8.jpg";
 
 function Portfolio() {
   const items = [
-    { label: "Reels", icon: Video, src: fashion1, h: "h-80", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
-    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
-    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
-    { label: "Reels", icon: Video, src: fashion5, h: "h-64", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
-    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
-    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
+    { label: "Reels", icon: Video, src: fashion1, h: "h-80", views: "2.1k", metric: "+38% CTR", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", views: "1.4k", metric: "+22 saves", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
+    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", views: "890", metric: "+14 DMs", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
+    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", views: "3.2k", metric: "R$ 4.80 CPA", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
+    { label: "Reels", icon: Video, src: fashion5, h: "h-64", views: "1.8k", metric: "+41% alcance", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", views: "1.1k", metric: "+18 saves", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
+    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", views: "720", metric: "+9 DMs", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
+    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", views: "2.6k", metric: "R$ 5.20 CPA", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
   ];
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Nosso Trabalho</SectionLabel>
@@ -577,16 +577,32 @@ function Portfolio() {
                   loading="lazy"
                   width={704}
                   height={1216}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
-                  <it.icon size={11} /> {it.label}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                {/* Format label */}
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
+                  <it.icon size={11} strokeWidth={1.75} /> {it.label}
+                </div>
+
+                {/* AI badge */}
+                <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-[#3B82F6]/40 bg-[#2563EB]/20 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#93C5FD] backdrop-blur">
+                  <Sparkles size={9} strokeWidth={2} /> IA Generativa
+                </div>
+
+                {/* Hover metrics overlay */}
+                <div className="absolute inset-x-3 bottom-3 translate-y-2 rounded-xl border border-white/10 bg-black/60 p-3 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="flex items-center justify-between text-[11px] font-semibold text-white">
+                    <span className="inline-flex items-center gap-1.5 text-white/85"><Play size={10} /> {it.views} views</span>
+                    <span className="text-[#93C5FD]">{it.metric}</span>
+                  </div>
                 </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-12 text-center">
           <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
