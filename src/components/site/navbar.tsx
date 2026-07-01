@@ -4,10 +4,11 @@ import { Menu, X } from "lucide-react";
 const titanLogo = { url: "/titan-logo.png" };
 
 const links = [
-  { href: "#como-funciona", label: "Como Funciona" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#planos", label: "Planos" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#como-funciona", label: "Como Funciona" },
+  { href: "/portfolio", label: "Portfólio" },
+  { href: "/#servicos", label: "Serviços" },
+  { href: "/#planos", label: "Planos" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 const WHATSAPP = `https://wa.me/5561982394985?text=${encodeURIComponent("Olá Titan! Vim pelo site e quero falar sobre criar Reels com IA pra minha loja.")}`;
