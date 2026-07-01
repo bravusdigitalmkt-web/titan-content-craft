@@ -97,9 +97,9 @@ export const Route = createFileRoute("/")({
           "@type": "FAQPage",
           mainEntity: [
             { "@type": "Question", name: "Fica óbvio que é IA?", acceptedAnswer: { "@type": "Answer", text: "Não. Usamos IA para criar movimento, som e efeitos profissionais. O resultado é indistinguível de um vídeo feito por editor caro." } },
-            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48-72 horas em dias úteis. Você manda na sexta, recebe na segunda." } },
-            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Zero contrato. Zero fidelidade. Cancele quando quiser, sem taxa." } },
-            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios — qualquer loja que vende por imagem no Instagram." } },
+            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48h é o padrão. Planos TITAN e SCALE têm prioridade e podem sair em 48-72h ou até menos." } },
+            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Não. Mês a mês, cancela quando quiser. Sem multa, sem letra miúda." } },
+            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios. Qualquer loja que vende produto visual e depende do Instagram pra vender se beneficia." } },
           ],
         }),
       },
