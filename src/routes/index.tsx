@@ -343,7 +343,7 @@ function Problem() {
     },
   ];
   return (
-    <section id="problema" className="relative py-24 sm:py-32">
+    <section id="problema" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
@@ -403,7 +403,7 @@ function HowItWorks() {
     },
   ];
   return (
-    <section id="como-funciona" className="relative py-24 sm:py-32">
+    <section id="como-funciona" className="relative py-28 sm:py-40">
       <div className="absolute inset-x-0 top-0 -z-10 h-96 bg-gradient-to-b from-[#2563EB]/5 to-transparent" />
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -477,7 +477,7 @@ function Benefits() {
   ];
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Por que a Titan?</SectionLabel>
@@ -881,7 +881,7 @@ function FAQ() {
     },
   ];
   return (
-    <section id="faq" className="relative py-24 sm:py-32">
+    <section id="faq" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal className="text-center">
           <SectionLabel>FAQ</SectionLabel>
@@ -916,7 +916,7 @@ function FAQ() {
 /* ---------------- FINAL CTA ---------------- */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="relative overflow-hidden py-28 sm:py-40">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-[#0c1226] to-transparent" />
       <BackgroundOrbs />
       <div className="relative mx-auto max-w-4xl px-6 text-center">
