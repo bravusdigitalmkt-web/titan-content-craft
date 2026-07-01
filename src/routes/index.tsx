@@ -197,7 +197,7 @@ function Hero() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
-            className="shimmer-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand"
+            className="shimmer-hover animate-pulse-glow group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white"
           >
             Ver exemplo em 60s
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
