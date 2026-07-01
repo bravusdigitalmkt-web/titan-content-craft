@@ -223,7 +223,7 @@ function PortfolioPage() {
       {/* Discreet admin link */}
       <div className="px-5 pb-10 text-center sm:px-8">
         <Link
-          to="/portfolio/admin"
+          to="/portfolio/adm"
           className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/60"
         >
           <Lock size={11} /> Área do admin
