@@ -896,10 +896,14 @@ function FAQ() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-xl border border-white/[0.08] bg-[#111827] px-5 data-[state=open]:border-[#2563EB]/30"
+                className="group/faq overflow-hidden rounded-xl border border-white/[0.08] bg-[#111827] px-5 transition-colors data-[state=open]:border-[#2563EB]/40 data-[state=open]:bg-[#0e1424]"
               >
-                <AccordionTrigger className="py-5 text-left font-display text-base font-semibold text-white hover:no-underline">
-                  {f.q}
+                <AccordionTrigger className="py-5 text-left font-display text-base font-semibold text-white hover:no-underline [&>svg:last-of-type]:hidden">
+                  <span className="flex-1 pr-4">{f.q}</span>
+                  <span className="relative grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-[#3B82F6] transition-colors group-data-[state=open]/faq:border-[#2563EB]/50 group-data-[state=open]/faq:bg-[#2563EB]/15 group-data-[state=open]/faq:text-white">
+                    <span className="absolute h-3 w-px bg-current transition-opacity duration-300 group-data-[state=open]/faq:opacity-0" />
+                    <span className="h-px w-3 bg-current" />
+                  </span>
                 </AccordionTrigger>
                 <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
                   {f.a}
@@ -908,6 +912,7 @@ function FAQ() {
             ))}
           </Accordion>
         </Reveal>
+
       </div>
     </section>
   );
