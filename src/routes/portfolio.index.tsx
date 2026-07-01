@@ -6,7 +6,7 @@ import { Navbar } from "@/components/site/navbar";
 import { Reveal } from "@/components/site/reveal";
 import { listPortfolioVideos } from "@/lib/portfolio.functions";
 
-export const Route = createFileRoute("/portfolio")({
+export const Route = createFileRoute("/portfolio/")({
   ssr: false,
   head: () => ({
     meta: [
