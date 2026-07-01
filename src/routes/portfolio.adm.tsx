@@ -1,15 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { Loader2, Lock, LogOut, Trash2, Upload } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Loader2, Trash2, Upload } from "lucide-react";
 import { Navbar } from "@/components/site/navbar";
 import { supabase } from "@/integrations/supabase/client";
 import {
   adminCreateUploadUrl,
   adminDeleteVideo,
   adminInsertVideo,
-  adminIsAuthed,
-  adminLogin,
-  adminLogout,
   listPortfolioVideos,
 } from "@/lib/portfolio.functions";
 
@@ -45,112 +42,18 @@ type VideoRow = {
 };
 
 function AdminPage() {
-  const [checking, setChecking] = useState(true);
-  const [authed, setAuthed] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const r = await adminIsAuthed();
-        setAuthed(r.authed);
-      } finally {
-        setChecking(false);
-      }
-    })();
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#09090B] text-white">
       <Navbar />
       <div className="mx-auto max-w-5xl px-5 pt-32 pb-20 sm:px-8">
-        {checking ? (
-          <div className="grid place-items-center py-20 text-white/50">
-            <Loader2 className="animate-spin" />
-          </div>
-        ) : authed ? (
-          <Panel onLogout={() => setAuthed(false)} />
-        ) : (
-          <LoginForm onSuccess={() => setAuthed(true)} />
-        )}
+        <Panel />
       </div>
     </div>
   );
 }
 
-function LoginForm({ onSuccess }: { onSuccess: () => void }) {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErr(null);
-    setBusy(true);
-    try {
-      const r = await adminLogin({ data: { user, password } });
-      if (!r.ok) setErr("Usuário ou senha inválidos.");
-      else onSuccess();
-    } catch {
-      setErr("Erro ao entrar. Tente de novo.");
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  return (
-    <form
-      onSubmit={submit}
-      className="mx-auto max-w-sm rounded-2xl border border-white/10 bg-white/[0.03] p-8"
-    >
-      <div className="mb-6 flex items-center gap-2">
-        <Lock size={16} className="text-[#3B82F6]" />
-        <h1 className="font-[Sora] text-lg font-semibold">Área do admin</h1>
-      </div>
-
-      <label className="mb-3 block">
-        <span className="mb-1 block text-xs uppercase tracking-wide text-white/60">
-          Usuário
-        </span>
-        <input
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-          autoComplete="username"
-          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm focus:border-[#1E5FFF] focus:outline-none"
-        />
-      </label>
-
-      <label className="mb-5 block">
-        <span className="mb-1 block text-xs uppercase tracking-wide text-white/60">
-          Senha
-        </span>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-          className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm focus:border-[#1E5FFF] focus:outline-none"
-        />
-      </label>
-
-      {err && (
-        <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">
-          {err}
-        </div>
-      )}
-
-      <button
-        type="submit"
-        disabled={busy}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1E5FFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_30px_-6px_rgba(30,95,255,0.6)] transition-all hover:scale-[1.01] disabled:opacity-60"
-      >
-        {busy ? <Loader2 size={16} className="animate-spin" /> : "Entrar"}
-      </button>
-    </form>
-  );
-}
-
-function Panel({ onLogout }: { onLogout: () => void }) {
+function Panel() {
   const [videos, setVideos] = useState<VideoRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -168,11 +71,6 @@ function Panel({ onLogout }: { onLogout: () => void }) {
     load();
   }, []);
 
-  const handleLogout = async () => {
-    await adminLogout();
-    onLogout();
-  };
-
   const handleDelete = async (id: string) => {
     if (!confirm("Apagar esse vídeo? Essa ação não pode ser desfeita.")) return;
     await adminDeleteVideo({ data: { id } });
@@ -181,24 +79,18 @@ function Panel({ onLogout }: { onLogout: () => void }) {
 
   return (
     <div>
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="font-[Sora] text-2xl font-bold sm:text-3xl">
-            Painel do admin
-          </h1>
-          <p className="text-sm text-white/60">
-            Suba novos vídeos e gerencie o portfólio.
-          </p>
-        </div>
-        <button
-          onClick={handleLogout}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/80 hover:border-white/20 hover:text-white"
-        >
-          <LogOut size={14} /> Sair
-        </button>
+      <div className="mb-8">
+        <h1 className="font-[Sora] text-2xl font-bold sm:text-3xl">
+          Painel do admin
+        </h1>
+        <p className="text-sm text-white/60">
+          Suba novos vídeos e gerencie o portfólio.
+        </p>
       </div>
 
       <UploadForm onUploaded={load} />
+
+
 
       <div className="mt-12">
         <h2 className="mb-4 font-[Sora] text-lg font-semibold">

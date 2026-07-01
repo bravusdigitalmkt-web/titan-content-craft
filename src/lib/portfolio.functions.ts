@@ -106,7 +106,7 @@ export const adminIsAuthed = createServerFn({ method: "GET" }).handler(async () 
 export const adminCreateUploadUrl = createServerFn({ method: "POST" })
   .inputValidator((data: { filename: string }) => data)
   .handler(async ({ data }) => {
-    await requireAdmin();
+    // no auth — public admin panel
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const safe = (data.filename || "video.mp4").replace(/[^\w.-]/g, "_").slice(-60);
@@ -129,7 +129,7 @@ export const adminInsertVideo = createServerFn({ method: "POST" })
     }) => data,
   )
   .handler(async ({ data }) => {
-    await requireAdmin();
+    // no auth — public admin panel
 
     if (!CATEGORIES.includes(data.category)) throw new Error("Categoria inválida");
     const title = String(data.title || "").trim();
@@ -150,7 +150,7 @@ export const adminInsertVideo = createServerFn({ method: "POST" })
 export const adminDeleteVideo = createServerFn({ method: "POST" })
   .inputValidator((data: { id: string }) => data)
   .handler(async ({ data }) => {
-    await requireAdmin();
+    // no auth — public admin panel
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const { data: row } = await supabaseAdmin
