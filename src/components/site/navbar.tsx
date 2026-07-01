@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import titanLogo from "@/assets/titan-logo.png.asset.json";
 
 const links = [
   { href: "#como-funciona", label: "Como Funciona" },
@@ -35,9 +36,11 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex items-center gap-2.5">
-          <span className="font-display text-lg font-bold tracking-tight text-white">
-            Titan <span className="text-gradient-brand-animated">Criativos</span>
-          </span>
+          <img
+            src={titanLogo.url}
+            alt="Logo Titan Criativos"
+            className="h-12 w-12 shrink-0 rounded-full object-contain"
+          />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
