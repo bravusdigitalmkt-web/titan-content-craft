@@ -575,6 +575,7 @@ function Portfolio() {
                   src={it.src}
                   alt={it.alt}
                   loading="lazy"
+                  decoding="async"
                   width={704}
                   height={1216}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"

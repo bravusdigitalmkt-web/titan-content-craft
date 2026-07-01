@@ -39,6 +39,10 @@ export function Navbar() {
           <img
             src={titanLogo.url}
             alt="Logo Titan Criativos"
+            width={48}
+            height={48}
+            decoding="async"
+            fetchPriority="high"
             className="h-12 w-12 shrink-0 rounded-full object-contain"
           />
         </a>
