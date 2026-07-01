@@ -97,9 +97,9 @@ export const Route = createFileRoute("/")({
           "@type": "FAQPage",
           mainEntity: [
             { "@type": "Question", name: "Fica óbvio que é IA?", acceptedAnswer: { "@type": "Answer", text: "Não. Usamos IA para criar movimento, som e efeitos profissionais. O resultado é indistinguível de um vídeo feito por editor caro." } },
-            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48-72 horas em dias úteis. Você manda na sexta, recebe na segunda." } },
-            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Zero contrato. Zero fidelidade. Cancele quando quiser, sem taxa." } },
-            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios — qualquer loja que vende por imagem no Instagram." } },
+            { "@type": "Question", name: "Quanto tempo leva a entrega?", acceptedAnswer: { "@type": "Answer", text: "48h é o padrão. Planos TITAN e SCALE têm prioridade e podem sair em 48-72h ou até menos." } },
+            { "@type": "Question", name: "Tem fidelidade ou contrato?", acceptedAnswer: { "@type": "Answer", text: "Não. Mês a mês, cancela quando quiser. Sem multa, sem letra miúda." } },
+            { "@type": "Question", name: "Funciona para qual tipo de loja?", acceptedAnswer: { "@type": "Answer", text: "Moda feminina, masculina, calçados e acessórios. Qualquer loja que vende produto visual e depende do Instagram pra vender se beneficia." } },
           ],
         }),
       },
@@ -854,31 +854,31 @@ function FAQ() {
     },
     {
       q: "Quanto tempo leva entre eu mandar foto e receber?",
-      a: "48-72 horas em dias úteis. Você manda sexta, recebe segunda. Freelancer caro tira 1 semana. A gente tira 2 dias.",
+      a: "48h é o padrão. Planos TITAN e SCALE têm prioridade e podem sair em 48-72h ou até menos. Você manda hoje, recebe pronto pra postar em 2 dias.",
     },
     {
       q: "Posso pedir alterações infinitas?",
-      a: "Até 2 ajustes pequenos por vídeo: mudança de cor, som, velocidade. Mudanças drásticas contam como novo vídeo. Por quê? Porque a gente quer entregar rápido, não ficar nessa trocação.",
+      a: "Incluímos revisão em cada vídeo pra garantir que saia do jeito que você quer. Não é ilimitado eterno, mas também não te deixamos na mão se algo não ficou legal.",
     },
     {
       q: "Tem fidelidade ou contrato?",
-      a: "Zero contrato. Zero fidelidade. Você cancela quando quiser. Sem aviso. Sem taxa. (A real: ninguém cancela depois do mês 1. Quando vê resultado, vira cliente pro resto da vida.)",
+      a: "Não. Mês a mês, cancela quando quiser. Sem multa, sem letra miúda.",
     },
     {
       q: "Vocês fazem gestão de Instagram inteira?",
-      a: "Não. A gente cria o conteúdo. Você publica no horário certo (a gente dá recomendação). Porque você conhece seu público melhor que ninguém. Gestão de Instagram é outra coisa (ads, DM, etc).",
+      a: "Nosso foco é 100% produção de conteúdo — Reels, Stories, Carrosséis e legendas. Você continua no controle de quando e como postar. Nos planos TITAN e SCALE, a call mensal de estratégia te ajuda a organizar isso também.",
     },
     {
       q: "Se eu não gostar, consigo devolver?",
-      a: "Teste 1 mês. Se não vender mais no mês 1, a gente refaz a estratégia no mês 2 de graça. Se mesmo assim não gostar, cancela. (Mas raramente perdemos por qualidade. Perdemos porque loja fechou — cresceu demais.)",
+      a: "Sim. Teste o primeiro mês. Se não fizer sentido pra sua loja, você cancela e não é cobrado de novo. Sem burocracia.",
     },
     {
       q: "Funciona pra qual tipo de loja?",
-      a: "Moda feminina, masculina, calçados, acessórios. Qualquer coisa que se venda por imagem. NÃO funciona bem pra: eletrônicos complexos, B2B. A Titan é pra loja que vende por feed. Seu caso?",
+      a: "Moda feminina, masculina, calçados e acessórios. Qualquer loja que vende produto visual e depende do Instagram pra vender se beneficia.",
     },
     {
       q: "Qual o valor mínimo por mês pra ficar interessante?",
-      a: "Comece com START (R$ 497) e testa 1 mês. Se vender 10-15 camisetas extras com os vídeos (lucro = R$ 300-500), já tá pagando. Na maioria das vezes, cliente sobe pra TITAN no mês 2.",
+      a: "Lojas que faturam a partir de R$ 20k/mês no Instagram já sentem diferença real com o plano START. Quanto maior o volume de vendas, maior o retorno proporcional.",
     },
   ];
   return (
