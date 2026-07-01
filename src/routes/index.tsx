@@ -108,7 +108,15 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
-const WHATSAPP = "https://wa.me/5561982394985";
+const WHATSAPP_NUMBER = "5561982394985";
+const wa = (msg: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+const WHATSAPP = wa("Olá! Vim pelo site da Titan Criativos e quero saber mais sobre os Reels feitos por IA pra minha loja.");
+const WA_DEMO = wa("Olá Titan! Quero meu vídeo demo GRÁTIS. Vou mandar uma foto do meu produto pra vocês criarem o Reel.");
+const WA_EXEMPLO = wa("Oi! Vim pelo site e quero ver um exemplo de Reel em 60s pra minha loja de moda.");
+const WA_TESTE = wa("Olá! Quero começar o teste grátis dos Reels com IA da Titan Criativos.");
+const WA_PORTFOLIO = wa("Oi! Quero ver o portfólio completo e depoimentos de outras lojas de moda que usam a Titan.");
+const WA_CALL = wa("Olá! Quero agendar uma call de 15 min pra entender como a Titan pode ajudar minha loja.");
+const WA_PLANO = (plano: string) => wa(`Olá Titan! Tenho interesse no plano ${plano}. Pode me passar mais detalhes e como começar?`);
 const INSTAGRAM = "https://instagram.com/titan.criativos";
 const EMAIL = "contato@titancriativos.com";
 
@@ -180,7 +188,7 @@ function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <motion.a
-            href={WHATSAPP}
+            href={WA_EXEMPLO}
             target="_blank"
             rel="noreferrer"
             whileHover={{ scale: 1.04, y: -2 }}
@@ -192,7 +200,7 @@ function Hero() {
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <a
-            href={WHATSAPP}
+            href={WA_TESTE}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
@@ -388,7 +396,7 @@ function HowItWorks() {
 
         <Reveal className="mt-14 text-center">
           <a
-            href={WHATSAPP}
+            href={WA_DEMO}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
@@ -534,7 +542,7 @@ function Portfolio() {
         <Reveal className="mt-12 text-center">
           <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
           <a
-            href={WHATSAPP}
+            href={WA_PORTFOLIO}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
@@ -702,7 +710,7 @@ function Pricing() {
                   </div>
 
                   <a
-                    href={WHATSAPP}
+                    href={WA_PLANO(p.name)}
                     target="_blank"
                     rel="noreferrer"
                     className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
@@ -814,7 +822,7 @@ function FinalCTA() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={WHATSAPP}
+              href={WA_DEMO}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
@@ -822,7 +830,7 @@ function FinalCTA() {
               <MessageCircle size={18} /> Mandar foto pelo WhatsApp
             </a>
             <a
-              href={WHATSAPP}
+              href={WA_CALL}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.02] px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
