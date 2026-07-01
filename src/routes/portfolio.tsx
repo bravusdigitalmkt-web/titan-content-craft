@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Upload, Loader2, PlayCircle, Sparkles } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { PlayCircle, Sparkles, Lock } from "lucide-react";
 import { Navbar } from "@/components/site/navbar";
 import { Reveal } from "@/components/site/reveal";
+import { listPortfolioVideos } from "@/lib/portfolio.functions";
 
 export const Route = createFileRoute("/portfolio")({
   ssr: false,
@@ -36,7 +36,6 @@ const CATEGORIES = [
 ] as const;
 type Category = (typeof CATEGORIES)[number];
 
-const BUCKET = "portfolio-videos";
 const WHATSAPP = `https://wa.me/5561982394985?text=${encodeURIComponent(
   "Olá Titan! Vi o portfólio de vocês e quero criar conteúdo assim pra minha loja.",
 )}`;
@@ -48,7 +47,7 @@ type VideoRow = {
   category: Category;
   storage_path: string;
   created_at: string;
-  url?: string;
+  url: string | null;
 };
 
 function PortfolioPage() {
@@ -56,33 +55,17 @@ function PortfolioPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"Todos" | Category>("Todos");
 
-  const load = async () => {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("portfolio_videos")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error || !data) {
-      setVideos([]);
-      setLoading(false);
-      return;
-    }
-
-    const withUrls = await Promise.all(
-      (data as VideoRow[]).map(async (v) => {
-        const { data: signed } = await supabase.storage
-          .from(BUCKET)
-          .createSignedUrl(v.storage_path, 60 * 60 * 24 * 7);
-        return { ...v, url: signed?.signedUrl };
-      }),
-    );
-    setVideos(withUrls);
-    setLoading(false);
-  };
-
   useEffect(() => {
-    load();
+    (async () => {
+      try {
+        const data = await listPortfolioVideos();
+        setVideos(data as VideoRow[]);
+      } catch {
+        setVideos([]);
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, []);
 
   const filtered = useMemo(
@@ -111,9 +94,7 @@ function PortfolioPage() {
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1
-              className="mt-5 font-[Sora] text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
-            >
+            <h1 className="mt-5 font-[Sora] text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
               Veja o que a Titan já criou
             </h1>
           </Reveal>
@@ -122,13 +103,6 @@ function PortfolioPage() {
               Reels, Stories e Carrosséis feitos com IA para lojas de moda reais.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Upload */}
-      <section className="px-5 pb-16 sm:px-8">
-        <div className="mx-auto max-w-3xl">
-          <UploadForm onUploaded={load} />
         </div>
       </section>
 
@@ -245,152 +219,16 @@ function PortfolioPage() {
           </div>
         </div>
       </section>
-    </div>
-  );
-}
 
-function UploadForm({ onUploaded }: { onUploaded: () => void }) {
-  const [file, setFile] = useState<File | null>(null);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState<Category>("Moda Feminina");
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setMsg(null);
-    if (!file) return setMsg({ kind: "err", text: "Selecione um arquivo .mp4." });
-    if (!file.type.includes("mp4") && !file.name.toLowerCase().endsWith(".mp4")) {
-      return setMsg({ kind: "err", text: "O arquivo precisa ser .mp4." });
-    }
-    if (file.size > 100 * 1024 * 1024) {
-      return setMsg({ kind: "err", text: "Arquivo muito grande (máx 100MB)." });
-    }
-    if (!title.trim()) return setMsg({ kind: "err", text: "Adicione um título." });
-
-    setBusy(true);
-    const path = `${Date.now()}-${crypto.randomUUID()}.mp4`;
-
-    const up = await supabase.storage
-      .from(BUCKET)
-      .upload(path, file, { contentType: "video/mp4", upsert: false });
-
-    if (up.error) {
-      setBusy(false);
-      return setMsg({ kind: "err", text: `Erro no upload: ${up.error.message}` });
-    }
-
-    const ins = await supabase.from("portfolio_videos").insert({
-      title: title.trim(),
-      description: description.trim() || null,
-      category,
-      storage_path: path,
-    });
-
-    setBusy(false);
-
-    if (ins.error) {
-      return setMsg({ kind: "err", text: `Erro ao publicar: ${ins.error.message}` });
-    }
-
-    setFile(null);
-    setTitle("");
-    setDescription("");
-    setCategory("Moda Feminina");
-    setMsg({ kind: "ok", text: "Vídeo publicado com sucesso!" });
-    onUploaded();
-  };
-
-  return (
-    <form
-      onSubmit={submit}
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
-    >
-      <div className="mb-5 flex items-center gap-2">
-        <Upload size={16} className="text-[#3B82F6]" />
-        <h2 className="font-[Sora] text-lg font-semibold">Publicar novo vídeo</h2>
-      </div>
-
-      <div className="grid gap-4">
-        <label className="grid gap-2">
-          <span className="text-xs uppercase tracking-wide text-white/60">
-            Arquivo (.mp4)
-          </span>
-          <input
-            type="file"
-            accept="video/mp4"
-            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            className="block w-full cursor-pointer rounded-lg border border-white/10 bg-black/40 p-3 text-sm file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-[#1E5FFF] file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-[#3B82F6]"
-          />
-        </label>
-
-        <label className="grid gap-2">
-          <span className="text-xs uppercase tracking-wide text-white/60">Título</span>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            maxLength={120}
-            placeholder="Ex: Look verão — vestido midi"
-            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm placeholder:text-white/30 focus:border-[#1E5FFF] focus:outline-none"
-          />
-        </label>
-
-        <label className="grid gap-2">
-          <span className="text-xs uppercase tracking-wide text-white/60">
-            Descrição curta
-          </span>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            maxLength={400}
-            rows={2}
-            placeholder="Uma frase que resume o vídeo"
-            className="w-full resize-none rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm placeholder:text-white/30 focus:border-[#1E5FFF] focus:outline-none"
-          />
-        </label>
-
-        <label className="grid gap-2">
-          <span className="text-xs uppercase tracking-wide text-white/60">Categoria</span>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value as Category)}
-            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm focus:border-[#1E5FFF] focus:outline-none"
-          >
-            {CATEGORIES.map((c) => (
-              <option key={c} value={c} className="bg-[#09090B]">
-                {c}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <button
-          type="submit"
-          disabled={busy}
-          className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#1E5FFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_30px_-6px_rgba(30,95,255,0.6)] transition-all hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+      {/* Discreet admin link */}
+      <div className="px-5 pb-10 text-center sm:px-8">
+        <Link
+          to="/portfolio/admin"
+          className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/60"
         >
-          {busy ? (
-            <>
-              <Loader2 size={16} className="animate-spin" /> Enviando...
-            </>
-          ) : (
-            <>Publicar vídeo</>
-          )}
-        </button>
-
-        {msg && (
-          <div
-            className={`rounded-lg border px-3 py-2 text-sm ${
-              msg.kind === "ok"
-                ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
-                : "border-red-500/30 bg-red-500/10 text-red-200"
-            }`}
-          >
-            {msg.text}
-          </div>
-        )}
+          <Lock size={11} /> Área do admin
+        </Link>
       </div>
-    </form>
+    </div>
   );
 }
