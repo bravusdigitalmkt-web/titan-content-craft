@@ -10,7 +10,7 @@ const links = [
   { href: "#faq", label: "FAQ" },
 ];
 
-const WHATSAPP = "https://wa.me/5561982394985";
+const WHATSAPP = `https://wa.me/5561982394985?text=${encodeURIComponent("Olá Titan! Vim pelo site e quero falar sobre criar Reels com IA pra minha loja.")}`;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
