@@ -417,14 +417,19 @@ function HowItWorks() {
         </Reveal>
 
         <div className="relative mt-16">
-          <div className="absolute left-0 right-0 top-12 hidden h-px bg-gradient-to-r from-transparent via-white/20 to-transparent md:block" />
+          {/* Pipeline connector (animated flow) */}
+          <div className="pointer-events-none absolute left-8 right-8 top-14 hidden h-px overflow-hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+            <div className="absolute inset-y-0 w-1/3 animate-connector-flow bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent" />
+          </div>
           <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-3" stagger={0.12}>
             {steps.map((s, i) => (
               <RevealItem key={s.title}>
-                <div className="relative h-full rounded-2xl border border-white/[0.08] bg-[#111827] p-7">
+                <div className="glass-card group relative h-full rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)]">
                   <div className="flex items-start justify-between">
-                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-brand text-white glow-brand">
-                      <s.icon size={20} />
+                    <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-[#0b1120] text-[#3B82F6]">
+                      <div className="pointer-events-none absolute -inset-1 rounded-2xl bg-[#2563EB]/20 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
+                      <s.icon size={22} strokeWidth={1.5} />
                     </div>
                     <div className="font-display text-5xl font-bold text-white/5">0{i + 1}</div>
                   </div>
@@ -436,6 +441,7 @@ function HowItWorks() {
             ))}
           </RevealGroup>
         </div>
+
 
         <Reveal className="mt-14 text-center">
           <a
