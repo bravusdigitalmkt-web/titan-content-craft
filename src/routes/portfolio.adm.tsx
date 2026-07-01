@@ -1,15 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { Loader2, Lock, LogOut, Trash2, Upload } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Loader2, Trash2, Upload } from "lucide-react";
 import { Navbar } from "@/components/site/navbar";
 import { supabase } from "@/integrations/supabase/client";
 import {
   adminCreateUploadUrl,
   adminDeleteVideo,
   adminInsertVideo,
-  adminIsAuthed,
-  adminLogin,
-  adminLogout,
   listPortfolioVideos,
 } from "@/lib/portfolio.functions";
 
@@ -45,37 +42,16 @@ type VideoRow = {
 };
 
 function AdminPage() {
-  const [checking, setChecking] = useState(true);
-  const [authed, setAuthed] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const r = await adminIsAuthed();
-        setAuthed(r.authed);
-      } finally {
-        setChecking(false);
-      }
-    })();
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#09090B] text-white">
       <Navbar />
       <div className="mx-auto max-w-5xl px-5 pt-32 pb-20 sm:px-8">
-        {checking ? (
-          <div className="grid place-items-center py-20 text-white/50">
-            <Loader2 className="animate-spin" />
-          </div>
-        ) : authed ? (
-          <Panel onLogout={() => setAuthed(false)} />
-        ) : (
-          <LoginForm onSuccess={() => setAuthed(true)} />
-        )}
+        <Panel />
       </div>
     </div>
   );
 }
+
 
 function LoginForm({ onSuccess }: { onSuccess: () => void }) {
   const [user, setUser] = useState("");
