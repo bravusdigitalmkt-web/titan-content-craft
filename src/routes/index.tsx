@@ -188,7 +188,7 @@ function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <motion.a
-            href={WHATSAPP}
+            href={WA_EXEMPLO}
             target="_blank"
             rel="noreferrer"
             whileHover={{ scale: 1.04, y: -2 }}
@@ -200,7 +200,7 @@ function Hero() {
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </motion.a>
           <a
-            href={WHATSAPP}
+            href={WA_TESTE}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
@@ -396,7 +396,7 @@ function HowItWorks() {
 
         <Reveal className="mt-14 text-center">
           <a
-            href={WHATSAPP}
+            href={WA_DEMO}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
@@ -542,7 +542,7 @@ function Portfolio() {
         <Reveal className="mt-12 text-center">
           <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
           <a
-            href={WHATSAPP}
+            href={WA_PORTFOLIO}
             target="_blank"
             rel="noreferrer"
             className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.02] px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
@@ -710,7 +710,7 @@ function Pricing() {
                   </div>
 
                   <a
-                    href={WHATSAPP}
+                    href={WA_PLANO(p.name)}
                     target="_blank"
                     rel="noreferrer"
                     className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
@@ -822,7 +822,7 @@ function FinalCTA() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={WHATSAPP}
+              href={WA_DEMO}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-7 py-4 text-base font-semibold text-white glow-brand transition-transform hover:scale-[1.03]"
@@ -830,7 +830,7 @@ function FinalCTA() {
               <MessageCircle size={18} /> Mandar foto pelo WhatsApp
             </a>
             <a
-              href={WHATSAPP}
+              href={WA_CALL}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.02] px-7 py-4 text-base font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/[0.06]"
