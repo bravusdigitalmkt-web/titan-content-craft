@@ -1,0 +1,14 @@
+# Titan Criativos
+
+> Agência de conteúdo com Inteligência Artificial para lojas de moda. Transformamos fotos de produto em Reels, Stories, Carrosséis e legendas prontos pra postar no Instagram em 48h.
+
+A Titan Criativos é uma empresa de tecnologia que usa IA generativa para produzir conteúdo de alta performance para lojas de moda (feminina, masculina, calçados e acessórios). O foco é escalar produção de vídeos e criativos sem depender de freelas caros, editor interno ou produtora tradicional.
+
+## Pages
+
+- [Home](/): Proposta de valor, como funciona, portfólio, planos (Starter, Titan, Scale), FAQ e contato.
+
+## Optional
+
+- [WhatsApp](https://wa.me/5561982394985): Canal principal de vendas e onboarding.
+- [Instagram](https://instagram.com/titan.criativos): Portfólio ao vivo de Reels e criativos.
