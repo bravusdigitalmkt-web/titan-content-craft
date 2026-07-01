@@ -624,13 +624,13 @@ function Portfolio() {
 /* ---------------- SERVICES ---------------- */
 function Services() {
   const services = [
-    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)" },
-    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)" },
-    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)" },
-    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)" },
+    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)", highlight: false },
+    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)", highlight: false },
+    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)", highlight: false },
+    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)", highlight: true },
   ];
   return (
-    <section id="servicos" className="relative py-24 sm:py-32">
+    <section id="servicos" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Serviços</SectionLabel>
@@ -639,22 +639,39 @@ function Services() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {services.map((s) => (
             <RevealItem key={s.title}>
-              <div className="group h-full bg-[#0c1018] p-7 transition-colors hover:bg-[#111827]">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/[0.04] text-[#3B82F6] transition-colors group-hover:text-white">
-                  <s.icon size={18} />
+              <div className={`group relative h-full overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 ${
+                s.highlight
+                  ? "border border-[#3B82F6]/40 bg-[#0c1226] ring-glow-brand"
+                  : "border border-white/[0.08] bg-[#0c1018] hover:border-[#2563EB]/30"
+              }`}>
+                {s.highlight && (
+                  <>
+                    <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#2563EB]/25 blur-3xl" />
+                    <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full border border-[#3B82F6]/40 bg-[#2563EB]/15 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#93C5FD]">
+                      <Sparkles size={9} /> Diferencial
+                    </div>
+                  </>
+                )}
+                <div className={`relative grid h-11 w-11 place-items-center rounded-xl border transition-colors ${
+                  s.highlight
+                    ? "border-[#3B82F6]/40 bg-[#2563EB]/10 text-[#93C5FD]"
+                    : "border-white/[0.08] bg-white/[0.03] text-[#3B82F6] group-hover:text-white"
+                }`}>
+                  <s.icon size={18} strokeWidth={1.6} />
                 </div>
                 <h3 className="mt-5 font-display text-base font-semibold text-white">{s.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
                 <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-[#3B82F6]">
-                  <CalendarRange size={11} /> {s.freq}
+                  <CalendarRange size={11} strokeWidth={1.75} /> {s.freq}
                 </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-10 text-center">
           <p className="text-sm text-muted-foreground">
