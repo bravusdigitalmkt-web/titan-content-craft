@@ -1,10 +1,16 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { PlayCircle, Sparkles, Lock } from "lucide-react";
+import { Loader2, Lock, LogOut, PlayCircle, Sparkles, Trash2, Upload } from "lucide-react";
 import { Navbar } from "@/components/site/navbar";
 import { Reveal } from "@/components/site/reveal";
-import { listPortfolioVideos } from "@/lib/portfolio.functions";
+import { supabase } from "@/integrations/supabase/client";
+import {
+  adminCreateUploadUrl,
+  adminDeleteVideo,
+  adminInsertVideo,
+  listPortfolioVideos,
+} from "@/lib/portfolio.functions";
 
 export const Route = createFileRoute("/portfolio/")({
   ssr: false,
@@ -27,6 +33,7 @@ export const Route = createFileRoute("/portfolio/")({
   component: PortfolioPage,
 });
 
+const BUCKET = "portfolio-videos";
 const CATEGORIES = [
   "Moda Feminina",
   "Moda Masculina",
@@ -40,6 +47,8 @@ const WHATSAPP = `https://wa.me/5561982394985?text=${encodeURIComponent(
   "Olá Titan! Vi o portfólio de vocês e quero criar conteúdo assim pra minha loja.",
 )}`;
 
+const ADMIN_KEY = "titan_adm";
+
 type VideoRow = {
   id: string;
   title: string;
@@ -50,28 +59,64 @@ type VideoRow = {
   url: string | null;
 };
 
+function useAdmin() {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    // Ativa admin via URL: /portfolio?adm=1 (persiste no navegador)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("adm") === "1") {
+      localStorage.setItem(ADMIN_KEY, "1");
+      // limpa a query pra URL ficar bonita
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+    if (params.get("adm") === "0") {
+      localStorage.removeItem(ADMIN_KEY);
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+    setIsAdmin(localStorage.getItem(ADMIN_KEY) === "1");
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem(ADMIN_KEY);
+    setIsAdmin(false);
+  };
+
+  return { isAdmin, logout };
+}
+
 function PortfolioPage() {
+  const { isAdmin, logout } = useAdmin();
   const [videos, setVideos] = useState<VideoRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"Todos" | Category>("Todos");
 
+  const load = async () => {
+    setLoading(true);
+    try {
+      const data = await listPortfolioVideos();
+      setVideos(data as VideoRow[]);
+    } catch {
+      setVideos([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await listPortfolioVideos();
-        setVideos(data as VideoRow[]);
-      } catch {
-        setVideos([]);
-      } finally {
-        setLoading(false);
-      }
-    })();
+    load();
   }, []);
 
   const filtered = useMemo(
     () => (filter === "Todos" ? videos : videos.filter((v) => v.category === filter)),
     [videos, filter],
   );
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Apagar esse vídeo? Essa ação não pode ser desfeita.")) return;
+    await adminDeleteVideo({ data: { id } });
+    load();
+  };
 
   return (
     <div className="min-h-screen bg-[#09090B] text-white">
@@ -106,8 +151,28 @@ function PortfolioPage() {
         </div>
       </section>
 
-      {/* Filters */}
-      <section className="px-5 sm:px-8">
+      {/* Painel admin — só aparece pra você */}
+      {isAdmin && (
+        <section className="px-5 sm:px-8">
+          <div className="mx-auto max-w-5xl">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#1E5FFF]/40 bg-[#1E5FFF]/10 px-3 py-1 text-xs text-[#8FB4FF]">
+                <Lock size={12} /> Modo admin ativo
+              </div>
+              <button
+                onClick={logout}
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/70 hover:text-white"
+              >
+                <LogOut size={12} /> Sair do modo admin
+              </button>
+            </div>
+            <UploadForm onUploaded={load} />
+          </div>
+        </section>
+      )}
+
+      {/* Filtros */}
+      <section className="px-5 pt-10 sm:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-wrap gap-2">
             {(["Todos", ...CATEGORIES] as const).map((c) => {
@@ -130,7 +195,7 @@ function PortfolioPage() {
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Galeria */}
       <section className="px-5 py-10 sm:px-8">
         <div className="mx-auto max-w-7xl">
           {loading ? (
@@ -184,6 +249,14 @@ function PortfolioPage() {
                         {v.description}
                       </p>
                     )}
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleDelete(v.id)}
+                        className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-medium text-red-200 hover:bg-red-500/20"
+                      >
+                        <Trash2 size={12} /> Apagar
+                      </button>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -219,16 +292,168 @@ function PortfolioPage() {
           </div>
         </div>
       </section>
-
-      {/* Discreet admin link */}
-      <div className="px-5 pb-10 text-center sm:px-8">
-        <Link
-          to="/portfolio/adm"
-          className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/60"
-        >
-          <Lock size={11} /> Área do admin
-        </Link>
-      </div>
     </div>
+  );
+}
+
+function UploadForm({ onUploaded }: { onUploaded: () => void }) {
+  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState<Category>("Moda Feminina");
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMsg(null);
+    if (!file) return setMsg({ kind: "err", text: "Selecione um arquivo .mp4." });
+    if (!file.type.includes("mp4") && !file.name.toLowerCase().endsWith(".mp4")) {
+      return setMsg({ kind: "err", text: "O arquivo precisa ser .mp4." });
+    }
+    if (file.size > 200 * 1024 * 1024) {
+      return setMsg({ kind: "err", text: "Arquivo muito grande (máx 200MB)." });
+    }
+    if (!title.trim()) return setMsg({ kind: "err", text: "Adicione um título." });
+
+    setBusy(true);
+    setProgress(10);
+    try {
+      const { path, token } = await adminCreateUploadUrl({
+        data: { filename: file.name },
+      });
+      setProgress(30);
+
+      const up = await supabase.storage
+        .from(BUCKET)
+        .uploadToSignedUrl(path, token, file, { contentType: "video/mp4" });
+      if (up.error) throw new Error(up.error.message);
+      setProgress(75);
+
+      await adminInsertVideo({
+        data: {
+          title: title.trim(),
+          description: description.trim() || null,
+          category,
+          storage_path: path,
+        },
+      });
+      setProgress(100);
+
+      setFile(null);
+      setTitle("");
+      setDescription("");
+      setCategory("Moda Feminina");
+      setMsg({ kind: "ok", text: "Vídeo publicado com sucesso!" });
+      onUploaded();
+    } catch (e: unknown) {
+      const text = e instanceof Error ? e.message : "Erro ao publicar.";
+      setMsg({ kind: "err", text });
+    } finally {
+      setBusy(false);
+      setTimeout(() => setProgress(0), 800);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={submit}
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+    >
+      <div className="mb-5 flex items-center gap-2">
+        <Upload size={16} className="text-[#3B82F6]" />
+        <h2 className="font-[Sora] text-lg font-semibold">Publicar novo vídeo</h2>
+      </div>
+
+      <div className="grid gap-4">
+        <label className="grid gap-2">
+          <span className="text-xs uppercase tracking-wide text-white/60">
+            Arquivo (.mp4)
+          </span>
+          <input
+            type="file"
+            accept="video/mp4"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="block w-full cursor-pointer rounded-lg border border-white/10 bg-black/40 p-3 text-sm file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-[#1E5FFF] file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-white hover:file:bg-[#3B82F6]"
+          />
+        </label>
+
+        <label className="grid gap-2">
+          <span className="text-xs uppercase tracking-wide text-white/60">Título</span>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={120}
+            placeholder="Ex: Look verão — vestido midi"
+            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm placeholder:text-white/30 focus:border-[#1E5FFF] focus:outline-none"
+          />
+        </label>
+
+        <label className="grid gap-2">
+          <span className="text-xs uppercase tracking-wide text-white/60">
+            Descrição curta
+          </span>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            maxLength={400}
+            rows={2}
+            placeholder="Uma frase que resume o vídeo"
+            className="w-full resize-none rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm placeholder:text-white/30 focus:border-[#1E5FFF] focus:outline-none"
+          />
+        </label>
+
+        <label className="grid gap-2">
+          <span className="text-xs uppercase tracking-wide text-white/60">Categoria</span>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value as Category)}
+            className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm focus:border-[#1E5FFF] focus:outline-none"
+          >
+            {CATEGORIES.map((c) => (
+              <option key={c} value={c} className="bg-[#09090B]">
+                {c}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        {progress > 0 && (
+          <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full bg-[#1E5FFF] transition-all"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={busy}
+          className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#1E5FFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_8px_30px_-6px_rgba(30,95,255,0.6)] transition-all hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {busy ? (
+            <>
+              <Loader2 size={16} className="animate-spin" /> Enviando...
+            </>
+          ) : (
+            <>Publicar vídeo</>
+          )}
+        </button>
+
+        {msg && (
+          <div
+            className={`rounded-lg border px-3 py-2 text-sm ${
+              msg.kind === "ok"
+                ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+                : "border-red-500/30 bg-red-500/10 text-red-200"
+            }`}
+          >
+            {msg.text}
+          </div>
+        )}
+      </div>
+    </form>
   );
 }
