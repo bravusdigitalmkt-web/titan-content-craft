@@ -128,11 +128,12 @@ function Page() {
       <Hero />
       <Marquee />
       <TrustBar />
+      <SocialProof />
       <Problem />
       <HowItWorks />
       <Benefits />
       <Portfolio />
-      
+
       <Services />
       <Pricing />
       <FAQ />
@@ -142,12 +143,54 @@ function Page() {
   );
 }
 
+/* ---------------- SOCIAL PROOF (client strip) ---------------- */
+function SocialProof() {
+  const stores = [
+    "LUME ATELIÊ",
+    "NOIR STUDIO",
+    "AURORA MODA",
+    "CASA MARÉ",
+    "VERONA CO.",
+    "ZAHRA BOUTIQUE",
+    "OFICINA 34",
+    "LINHA FINA",
+  ];
+  return (
+    <section aria-label="Lojas que confiam na Titan" className="relative border-b border-white/[0.06] bg-[#0a0c14]/60">
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <p className="text-center text-[10px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+          Lojas que já trocaram freelancer pela Titan
+        </p>
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
+          {stores.map((name, i) => (
+            <motion.div
+              key={name}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 0.75, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
+              whileHover={{ opacity: 1, scale: 1.04 }}
+              className="text-center font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60 transition-colors hover:text-white"
+            >
+              {name}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section className="relative isolate overflow-hidden pt-36 pb-28 sm:pt-44 sm:pb-36">
       <div className="absolute inset-0 grid-bg" />
+      <div className="aurora-bg" aria-hidden />
+      <div className="aurora-bg-2" aria-hidden />
       <BackgroundOrbs />
+
       <div className="relative mx-auto max-w-5xl px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -194,7 +237,7 @@ function Hero() {
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
-            className="shimmer-hover group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white glow-brand"
+            className="shimmer-hover animate-pulse-glow group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-semibold text-white"
           >
             Ver exemplo em 60s
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
@@ -300,7 +343,7 @@ function Problem() {
     },
   ];
   return (
-    <section id="problema" className="relative py-24 sm:py-32">
+    <section id="problema" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>O problema</SectionLabel>
@@ -360,7 +403,7 @@ function HowItWorks() {
     },
   ];
   return (
-    <section id="como-funciona" className="relative py-24 sm:py-32">
+    <section id="como-funciona" className="relative py-28 sm:py-40">
       <div className="absolute inset-x-0 top-0 -z-10 h-96 bg-gradient-to-b from-[#2563EB]/5 to-transparent" />
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
@@ -374,14 +417,19 @@ function HowItWorks() {
         </Reveal>
 
         <div className="relative mt-16">
-          <div className="absolute left-0 right-0 top-12 hidden h-px bg-gradient-to-r from-transparent via-white/20 to-transparent md:block" />
+          {/* Pipeline connector (animated flow) */}
+          <div className="pointer-events-none absolute left-8 right-8 top-14 hidden h-px overflow-hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+            <div className="absolute inset-y-0 w-1/3 animate-connector-flow bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent" />
+          </div>
           <RevealGroup className="grid grid-cols-1 gap-6 md:grid-cols-3" stagger={0.12}>
             {steps.map((s, i) => (
               <RevealItem key={s.title}>
-                <div className="relative h-full rounded-2xl border border-white/[0.08] bg-[#111827] p-7">
+                <div className="glass-card group relative h-full rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#2563EB]/40 hover:shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)]">
                   <div className="flex items-start justify-between">
-                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-brand text-white glow-brand">
-                      <s.icon size={20} />
+                    <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-[#0b1120] text-[#3B82F6]">
+                      <div className="pointer-events-none absolute -inset-1 rounded-2xl bg-[#2563EB]/20 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
+                      <s.icon size={22} strokeWidth={1.5} />
                     </div>
                     <div className="font-display text-5xl font-bold text-white/5">0{i + 1}</div>
                   </div>
@@ -393,6 +441,7 @@ function HowItWorks() {
             ))}
           </RevealGroup>
         </div>
+
 
         <Reveal className="mt-14 text-center">
           <a
@@ -428,7 +477,7 @@ function Benefits() {
   ];
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Por que a Titan?</SectionLabel>
@@ -491,17 +540,17 @@ import fashion8 from "@/assets/fashion-8.jpg";
 
 function Portfolio() {
   const items = [
-    { label: "Reels", icon: Video, src: fashion1, h: "h-80", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
-    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
-    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
-    { label: "Reels", icon: Video, src: fashion5, h: "h-64", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
-    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
-    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
-    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
+    { label: "Reels", icon: Video, src: fashion1, h: "h-80", views: "2.1k", metric: "+38% CTR", alt: "Reels de moda feminina criado com IA pela Titan Criativos para loja de roupas" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion2, h: "h-64", views: "1.4k", metric: "+22 saves", alt: "Carrossel de produto de moda em ambiente boutique editado profissionalmente" },
+    { label: "Stories", icon: ImageIcon, src: fashion3, h: "h-72", views: "890", metric: "+14 DMs", alt: "Story de Instagram com modelo em provador de loja de moda feminina" },
+    { label: "Criativo", icon: Megaphone, src: fashion4, h: "h-64", views: "3.2k", metric: "R$ 4.80 CPA", alt: "Criativo de anúncio para loja de moda com tratamento de imagem por IA" },
+    { label: "Reels", icon: Video, src: fashion5, h: "h-64", views: "1.8k", metric: "+41% alcance", alt: "Reel de lançamento de coleção em boutique de moda feminina" },
+    { label: "Carrossel", icon: LayoutGrid, src: fashion6, h: "h-80", views: "1.1k", metric: "+18 saves", alt: "Carrossel editorial de moda feminina com múltiplos ângulos do produto" },
+    { label: "Stories", icon: ImageIcon, src: fashion7, h: "h-60", views: "720", metric: "+9 DMs", alt: "Story promocional de loja de moda com modelo em ambiente de boutique" },
+    { label: "Criativo", icon: Megaphone, src: fashion8, h: "h-72", views: "2.6k", metric: "R$ 5.20 CPA", alt: "Criativo de Instagram Ads para e-commerce de moda com IA generativa" },
   ];
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Nosso Trabalho</SectionLabel>
@@ -528,16 +577,32 @@ function Portfolio() {
                   loading="lazy"
                   width={704}
                   height={1216}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
-                  <it.icon size={11} /> {it.label}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                {/* Format label */}
+                <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur">
+                  <it.icon size={11} strokeWidth={1.75} /> {it.label}
+                </div>
+
+                {/* AI badge */}
+                <div className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-[#3B82F6]/40 bg-[#2563EB]/20 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#93C5FD] backdrop-blur">
+                  <Sparkles size={9} strokeWidth={2} /> IA Generativa
+                </div>
+
+                {/* Hover metrics overlay */}
+                <div className="absolute inset-x-3 bottom-3 translate-y-2 rounded-xl border border-white/10 bg-black/60 p-3 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="flex items-center justify-between text-[11px] font-semibold text-white">
+                    <span className="inline-flex items-center gap-1.5 text-white/85"><Play size={10} /> {it.views} views</span>
+                    <span className="text-[#93C5FD]">{it.metric}</span>
+                  </div>
                 </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-12 text-center">
           <p className="text-muted-foreground">Quer saber quanto vendeu com esses? Fale com a gente.</p>
@@ -559,13 +624,13 @@ function Portfolio() {
 /* ---------------- SERVICES ---------------- */
 function Services() {
   const services = [
-    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)" },
-    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)" },
-    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)" },
-    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)" },
+    { icon: Video, title: "Reel (o formato que mais vende)", desc: "Vídeo 15-30s, som otimizado, editing profissional. Algoritmo adora. Seu público compra.", freq: "4-5 por semana (plano TITAN)", highlight: false },
+    { icon: LayoutGrid, title: "Carrossel (alto tempo de tela)", desc: "5-7 slides do mesmo produto em ângulos diferentes. Pessoas scrollam. Veem bem. Compartilham.", freq: "2-3 por semana (plano TITAN)", highlight: false },
+    { icon: ImageIcon, title: "Stories (mantém quem já segue)", desc: "1-2 stories por dia com promoção, curiosidade ou urgência. Conversa com quem já tá no funnel.", freq: "Diariamente (automático)", highlight: false },
+    { icon: PenLine, title: "Legendas que vendem (a venda acontece no texto)", desc: "Não é descrição. É estímulo psicológico. CTA clara. Urgência. Desejo. Tudo pronto.", freq: "Em cada publicação (automático)", highlight: true },
   ];
   return (
-    <section id="servicos" className="relative py-24 sm:py-32">
+    <section id="servicos" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Serviços</SectionLabel>
@@ -574,22 +639,39 @@ function Services() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {services.map((s) => (
             <RevealItem key={s.title}>
-              <div className="group h-full bg-[#0c1018] p-7 transition-colors hover:bg-[#111827]">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/[0.04] text-[#3B82F6] transition-colors group-hover:text-white">
-                  <s.icon size={18} />
+              <div className={`group relative h-full overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 ${
+                s.highlight
+                  ? "border border-[#3B82F6]/40 bg-[#0c1226] ring-glow-brand"
+                  : "border border-white/[0.08] bg-[#0c1018] hover:border-[#2563EB]/30"
+              }`}>
+                {s.highlight && (
+                  <>
+                    <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#2563EB]/25 blur-3xl" />
+                    <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full border border-[#3B82F6]/40 bg-[#2563EB]/15 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#93C5FD]">
+                      <Sparkles size={9} /> Diferencial
+                    </div>
+                  </>
+                )}
+                <div className={`relative grid h-11 w-11 place-items-center rounded-xl border transition-colors ${
+                  s.highlight
+                    ? "border-[#3B82F6]/40 bg-[#2563EB]/10 text-[#93C5FD]"
+                    : "border-white/[0.08] bg-white/[0.03] text-[#3B82F6] group-hover:text-white"
+                }`}>
+                  <s.icon size={18} strokeWidth={1.6} />
                 </div>
                 <h3 className="mt-5 font-display text-base font-semibold text-white">{s.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
                 <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-[#3B82F6]">
-                  <CalendarRange size={11} /> {s.freq}
+                  <CalendarRange size={11} strokeWidth={1.75} /> {s.freq}
                 </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-10 text-center">
           <p className="text-sm text-muted-foreground">
@@ -607,6 +689,7 @@ function Pricing() {
     {
       name: "START",
       price: "R$ 497",
+      videos: 8,
       tagline: "Pra quem quer testar se funciona (e funciona).",
       features: [
         "8 vídeos/mês (2 por semana)",
@@ -621,6 +704,7 @@ function Pricing() {
     {
       name: "TITAN",
       price: "R$ 697",
+      videos: 12,
       tagline: "O equilíbrio. Consistência + crescimento. (A maioria escolhe essa.)",
       features: [
         "12 vídeos/mês (3+ por semana)",
@@ -636,6 +720,7 @@ function Pricing() {
     {
       name: "SCALE",
       price: "R$ 997",
+      videos: 20,
       tagline: "Pra loja que quer ficar famosa no feed.",
       features: [
         "20 vídeos/mês (5+ por semana)",
@@ -649,9 +734,10 @@ function Pricing() {
       featured: false,
     },
   ];
+  const maxVideos = Math.max(...plans.map((p) => p.videos));
   return (
-    <section id="planos" className="relative py-24 sm:py-32">
-      <div className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 mx-auto h-96 max-w-3xl bg-[#2563EB]/10 blur-[120px]" />
+    <section id="planos" className="relative py-28 sm:py-40">
+      <div className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 mx-auto h-96 max-w-3xl bg-[#2563EB]/12 blur-[120px]" />
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Planos</SectionLabel>
@@ -660,45 +746,65 @@ function Pricing() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
+        <RevealGroup className="mt-16 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3" stagger={0.1}>
           {plans.map((p) => (
-            <RevealItem key={p.name}>
+            <RevealItem key={p.name} className={p.featured ? "lg:-my-4 lg:z-10" : ""}>
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className={`relative h-full rounded-3xl p-px ${
                   p.featured
-                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED] animate-float-y"
+                    ? "gradient-border bg-transparent lg:scale-[1.04]"
                     : "bg-white/[0.08]"
                 }`}
               >
                 <div
                   className={`relative flex h-full flex-col rounded-[calc(theme(borderRadius.3xl)-1px)] p-8 ${
                     p.featured
-                      ? "bg-[#0e1424] shadow-[0_30px_80px_-20px_rgba(37,99,235,0.55)]"
+                      ? "bg-[#0b1120] shadow-[0_40px_100px_-30px_rgba(37,99,235,0.65)]"
                       : "bg-[#111827]"
                   }`}
                 >
                   {p.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">
-                      Mais escolhida
-                    </div>
+                    <>
+                      <div className="pointer-events-none absolute -top-24 left-1/2 h-40 w-56 -translate-x-1/2 rounded-full bg-[#2563EB]/40 blur-3xl" />
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_10px_30px_-6px_rgba(37,99,235,0.7)]">
+                        <span className="inline-flex items-center gap-1.5"><Sparkles size={12} strokeWidth={2.5} /> Mais escolhida</span>
+                      </div>
+                    </>
                   )}
 
                   <div className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                     {p.name}
                   </div>
                   <div className="mt-5 flex items-baseline gap-1.5">
-                    <span className="font-display text-5xl font-bold text-white">{p.price}</span>
+                    <span className={`font-display text-5xl font-bold ${p.featured ? "text-gradient-brand" : "text-white"}`}>{p.price}</span>
                     <span className="text-sm text-muted-foreground">/mês</span>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
 
-                  <ul className="mt-8 space-y-3.5">
+                  {/* Visual videos bar */}
+                  <div className="mt-6 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                    <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider">
+                      <span className="text-muted-foreground">Vídeos por mês</span>
+                      <span className={p.featured ? "text-[#93C5FD]" : "text-white/80"}>{p.videos}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(p.videos / maxVideos) * 100}%` }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+                        className={`h-full rounded-full ${p.featured ? "bg-gradient-brand" : "bg-white/40"}`}
+                      />
+                    </div>
+                  </div>
+
+                  <ul className="mt-6 space-y-3.5">
                     {p.features.map((f) => (
                       <li key={f} className="flex items-start gap-3 text-sm text-white/90">
                         <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#22C55E]/15 text-[#22C55E]">
-                          <Check size={12} />
+                          <Check size={12} strokeWidth={2.5} />
                         </span>
                         {f}
                       </li>
@@ -715,7 +821,7 @@ function Pricing() {
                     rel="noreferrer"
                     className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
                       p.featured
-                        ? "bg-gradient-brand text-white glow-brand"
+                        ? "bg-gradient-brand text-white glow-brand animate-pulse-glow"
                         : "border border-white/15 bg-white/[0.03] text-white hover:bg-white/[0.07]"
                     }`}
                   >
@@ -726,6 +832,7 @@ function Pricing() {
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-10 flex flex-col items-center gap-2 text-center text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Sem fidelidade. Cancela quando quiser.</span>
@@ -774,7 +881,7 @@ function FAQ() {
     },
   ];
   return (
-    <section id="faq" className="relative py-24 sm:py-32">
+    <section id="faq" className="relative py-28 sm:py-40">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal className="text-center">
           <SectionLabel>FAQ</SectionLabel>
@@ -789,10 +896,14 @@ function FAQ() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="overflow-hidden rounded-xl border border-white/[0.08] bg-[#111827] px-5 data-[state=open]:border-[#2563EB]/30"
+                className="group/faq overflow-hidden rounded-xl border border-white/[0.08] bg-[#111827] px-5 transition-colors data-[state=open]:border-[#2563EB]/40 data-[state=open]:bg-[#0e1424]"
               >
-                <AccordionTrigger className="py-5 text-left font-display text-base font-semibold text-white hover:no-underline">
-                  {f.q}
+                <AccordionTrigger className="py-5 text-left font-display text-base font-semibold text-white hover:no-underline [&>svg:last-of-type]:hidden">
+                  <span className="flex-1 pr-4">{f.q}</span>
+                  <span className="relative grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-[#3B82F6] transition-colors group-data-[state=open]/faq:border-[#2563EB]/50 group-data-[state=open]/faq:bg-[#2563EB]/15 group-data-[state=open]/faq:text-white">
+                    <span className="absolute h-3 w-px bg-current transition-opacity duration-300 group-data-[state=open]/faq:opacity-0" />
+                    <span className="h-px w-3 bg-current" />
+                  </span>
                 </AccordionTrigger>
                 <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
                   {f.a}
@@ -801,6 +912,7 @@ function FAQ() {
             ))}
           </Accordion>
         </Reveal>
+
       </div>
     </section>
   );
@@ -809,7 +921,7 @@ function FAQ() {
 /* ---------------- FINAL CTA ---------------- */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="relative overflow-hidden py-28 sm:py-40">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-[#0c1226] to-transparent" />
       <BackgroundOrbs />
       <div className="relative mx-auto max-w-4xl px-6 text-center">

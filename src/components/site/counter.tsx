@@ -13,7 +13,7 @@ export function Counter({
   suffix?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
   const [value, setValue] = useState(0);
 
   useEffect(() => {
