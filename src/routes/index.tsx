@@ -108,7 +108,15 @@ export const Route = createFileRoute("/")({
   component: Page,
 });
 
-const WHATSAPP = "https://wa.me/5561982394985";
+const WHATSAPP_NUMBER = "5561982394985";
+const wa = (msg: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+const WHATSAPP = wa("Olá! Vim pelo site da Titan Criativos e quero saber mais sobre os Reels feitos por IA pra minha loja.");
+const WA_DEMO = wa("Olá Titan! Quero meu vídeo demo GRÁTIS. Vou mandar uma foto do meu produto pra vocês criarem o Reel.");
+const WA_EXEMPLO = wa("Oi! Vim pelo site e quero ver um exemplo de Reel em 60s pra minha loja de moda.");
+const WA_TESTE = wa("Olá! Quero começar o teste grátis dos Reels com IA da Titan Criativos.");
+const WA_PORTFOLIO = wa("Oi! Quero ver o portfólio completo e depoimentos de outras lojas de moda que usam a Titan.");
+const WA_CALL = wa("Olá! Quero agendar uma call de 15 min pra entender como a Titan pode ajudar minha loja.");
+const WA_PLANO = (plano: string) => wa(`Olá Titan! Tenho interesse no plano ${plano}. Pode me passar mais detalhes e como começar?`);
 const INSTAGRAM = "https://instagram.com/titan.criativos";
 const EMAIL = "contato@titancriativos.com";
 
