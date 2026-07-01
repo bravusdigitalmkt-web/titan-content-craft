@@ -13,7 +13,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/site/reveal";
 import { Counter } from "@/components/site/counter";
 import { ScrollProgress } from "@/components/site/scroll-progress";
 import { Marquee } from "@/components/site/marquee";
-import titanLogo from "@/assets/titan-logo-new.png.asset.json";
+
 import {
   ArrowRight,
   Sparkles,
@@ -842,12 +842,7 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2.5">
-            <img
-              src={titanLogo.url}
-              alt="Logo Titan Criativos"
-              className="h-12 w-12 shrink-0 rounded-full bg-white object-contain p-1 ring-1 ring-primary/50"
-            />
-            <span className="font-display text-base font-bold text-white">Titan Criativos</span>
+            <span className="font-display text-lg font-bold text-white">Titan Criativos</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Tecnologia em conteúdo para moda.
