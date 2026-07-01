@@ -1,8 +1,16 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { PortfolioPage } from "@/components/site/portfolio-page";
 
 export const Route = createFileRoute("/portfolio/adm")({
-  beforeLoad: () => {
-    throw redirect({ to: "/portfolio", search: { adm: "1" } as never });
-  },
-  component: () => null,
+  ssr: false,
+  head: () => ({
+    meta: [
+      { title: "Admin Portfólio — Titan Criativos" },
+      {
+        name: "description",
+        content: "Painel para publicar e gerenciar vídeos do portfólio Titan Criativos.",
+      },
+    ],
+  }),
+  component: () => <PortfolioPage forceAdmin />,
 });
