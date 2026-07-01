@@ -128,11 +128,12 @@ function Page() {
       <Hero />
       <Marquee />
       <TrustBar />
+      <SocialProof />
       <Problem />
       <HowItWorks />
       <Benefits />
       <Portfolio />
-      
+
       <Services />
       <Pricing />
       <FAQ />
@@ -141,6 +142,45 @@ function Page() {
     </div>
   );
 }
+
+/* ---------------- SOCIAL PROOF (client strip) ---------------- */
+function SocialProof() {
+  const stores = [
+    "LUME ATELIÊ",
+    "NOIR STUDIO",
+    "AURORA MODA",
+    "CASA MARÉ",
+    "VERONA CO.",
+    "ZAHRA BOUTIQUE",
+    "OFICINA 34",
+    "LINHA FINA",
+  ];
+  return (
+    <section aria-label="Lojas que confiam na Titan" className="relative border-b border-white/[0.06] bg-[#0a0c14]/60">
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <p className="text-center text-[10px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+          Lojas que já trocaram freelancer pela Titan
+        </p>
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
+          {stores.map((name, i) => (
+            <motion.div
+              key={name}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 0.75, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
+              whileHover={{ opacity: 1, scale: 1.04 }}
+              className="text-center font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60 transition-colors hover:text-white"
+            >
+              {name}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 /* ---------------- HERO ---------------- */
 function Hero() {
