@@ -689,6 +689,7 @@ function Pricing() {
     {
       name: "START",
       price: "R$ 497",
+      videos: 8,
       tagline: "Pra quem quer testar se funciona (e funciona).",
       features: [
         "8 vídeos/mês (2 por semana)",
@@ -703,6 +704,7 @@ function Pricing() {
     {
       name: "TITAN",
       price: "R$ 697",
+      videos: 12,
       tagline: "O equilíbrio. Consistência + crescimento. (A maioria escolhe essa.)",
       features: [
         "12 vídeos/mês (3+ por semana)",
@@ -718,6 +720,7 @@ function Pricing() {
     {
       name: "SCALE",
       price: "R$ 997",
+      videos: 20,
       tagline: "Pra loja que quer ficar famosa no feed.",
       features: [
         "20 vídeos/mês (5+ por semana)",
@@ -731,9 +734,10 @@ function Pricing() {
       featured: false,
     },
   ];
+  const maxVideos = Math.max(...plans.map((p) => p.videos));
   return (
-    <section id="planos" className="relative py-24 sm:py-32">
-      <div className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 mx-auto h-96 max-w-3xl bg-[#2563EB]/10 blur-[120px]" />
+    <section id="planos" className="relative py-28 sm:py-40">
+      <div className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 mx-auto h-96 max-w-3xl bg-[#2563EB]/12 blur-[120px]" />
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Planos</SectionLabel>
@@ -742,45 +746,65 @@ function Pricing() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3" stagger={0.1}>
+        <RevealGroup className="mt-16 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3" stagger={0.1}>
           {plans.map((p) => (
-            <RevealItem key={p.name}>
+            <RevealItem key={p.name} className={p.featured ? "lg:-my-4 lg:z-10" : ""}>
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
                 className={`relative h-full rounded-3xl p-px ${
                   p.featured
-                    ? "bg-gradient-to-b from-[#2563EB] via-[#3B82F6] to-[#7C3AED] animate-float-y"
+                    ? "gradient-border bg-transparent lg:scale-[1.04]"
                     : "bg-white/[0.08]"
                 }`}
               >
                 <div
                   className={`relative flex h-full flex-col rounded-[calc(theme(borderRadius.3xl)-1px)] p-8 ${
                     p.featured
-                      ? "bg-[#0e1424] shadow-[0_30px_80px_-20px_rgba(37,99,235,0.55)]"
+                      ? "bg-[#0b1120] shadow-[0_40px_100px_-30px_rgba(37,99,235,0.65)]"
                       : "bg-[#111827]"
                   }`}
                 >
                   {p.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white">
-                      Mais escolhida
-                    </div>
+                    <>
+                      <div className="pointer-events-none absolute -top-24 left-1/2 h-40 w-56 -translate-x-1/2 rounded-full bg-[#2563EB]/40 blur-3xl" />
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_10px_30px_-6px_rgba(37,99,235,0.7)]">
+                        <span className="inline-flex items-center gap-1.5"><Sparkles size={12} strokeWidth={2.5} /> Mais escolhida</span>
+                      </div>
+                    </>
                   )}
 
                   <div className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                     {p.name}
                   </div>
                   <div className="mt-5 flex items-baseline gap-1.5">
-                    <span className="font-display text-5xl font-bold text-white">{p.price}</span>
+                    <span className={`font-display text-5xl font-bold ${p.featured ? "text-gradient-brand" : "text-white"}`}>{p.price}</span>
                     <span className="text-sm text-muted-foreground">/mês</span>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">{p.tagline}</p>
 
-                  <ul className="mt-8 space-y-3.5">
+                  {/* Visual videos bar */}
+                  <div className="mt-6 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                    <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider">
+                      <span className="text-muted-foreground">Vídeos por mês</span>
+                      <span className={p.featured ? "text-[#93C5FD]" : "text-white/80"}>{p.videos}</span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${(p.videos / maxVideos) * 100}%` }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.15 }}
+                        className={`h-full rounded-full ${p.featured ? "bg-gradient-brand" : "bg-white/40"}`}
+                      />
+                    </div>
+                  </div>
+
+                  <ul className="mt-6 space-y-3.5">
                     {p.features.map((f) => (
                       <li key={f} className="flex items-start gap-3 text-sm text-white/90">
                         <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#22C55E]/15 text-[#22C55E]">
-                          <Check size={12} />
+                          <Check size={12} strokeWidth={2.5} />
                         </span>
                         {f}
                       </li>
@@ -797,7 +821,7 @@ function Pricing() {
                     rel="noreferrer"
                     className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.02] ${
                       p.featured
-                        ? "bg-gradient-brand text-white glow-brand"
+                        ? "bg-gradient-brand text-white glow-brand animate-pulse-glow"
                         : "border border-white/15 bg-white/[0.03] text-white hover:bg-white/[0.07]"
                     }`}
                   >
@@ -808,6 +832,7 @@ function Pricing() {
             </RevealItem>
           ))}
         </RevealGroup>
+
 
         <Reveal className="mt-10 flex flex-col items-center gap-2 text-center text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#22C55E]" /> Sem fidelidade. Cancela quando quiser.</span>
