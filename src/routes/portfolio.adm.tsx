@@ -13,7 +13,7 @@ import {
   listPortfolioVideos,
 } from "@/lib/portfolio.functions";
 
-export const Route = createFileRoute("/portfolio/admin")({
+export const Route = createFileRoute("/portfolio/adm")({
   ssr: false,
   head: () => ({
     meta: [
